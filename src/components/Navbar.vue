@@ -1,28 +1,29 @@
 <template>
   <header class="navbar">
-    <!-- Top Bar -->
     <div class="top-bar">
       <div class="top-bar-container">
         <div class="top-bar-left">
-          <span class="top-bar-text">Lunes a Viernes (Horario de atención 10:00-17:00)</span>
+          <div class="marquee-container">
+            <div class="marquee-content">
+              <span class="marquee-text">Lunes a Viernes (Horario de atención 10:00-17:00)</span>
+            </div>
+          </div>
         </div>
         <div class="top-bar-right">
-          <a href="https://wa.me/56945408979" class="top-bar-link">
+          <a href="https://wa.me/56955555" class="top-bar-link">
             <span class="whatsapp-icon">📱</span>
-            <span>Whatsapp +56 9 4540 8979</span>
+            <span>Whatsapp +56 955555</span>
           </a>
           <a href="mailto:sos@dandolahora.cl" class="top-bar-link">
             <span class="email-icon">✉️</span>
-            <span>sos@dandolahora.cl</span>
+            <span>soporte@gmail.com</span>
           </a>
         </div>
       </div>
     </div>
 
-    <!-- Main Navbar -->
     <div class="navbar-main">
       <div class="navbar-container">
-        <!-- Logo/Brand -->
         <div class="navbar-brand">
           <RouterLink to="/" class="brand-link">
             <div class="logo">
@@ -31,7 +32,6 @@
           </RouterLink>
         </div>
 
-        <!-- Search Bar -->
         <div class="search-container">
           <div class="search-box">
             <input 
@@ -47,18 +47,14 @@
           </div>
         </div>
 
-        <!-- User Actions -->
         <div class="navbar-actions">
-          <!-- Carrito -->
           <button class="cart-btn" @click="toggleCart">
             <span class="cart-icon">🛒</span>
             <span class="cart-text">Carrito</span>
             <span class="cart-count" v-if="cartCount > 0">({{ cartCount }})</span>
           </button>
 
-          <!-- Menú de Usuario -->
           <div class="user-menu">
-            <!-- Si no está autenticado -->
             <template v-if="!userStore.isAuthenticated">
               <RouterLink to="/login" class="auth-btn login-btn">
                 <span class="btn-icon">👤</span>
@@ -66,7 +62,6 @@
               </RouterLink>
             </template>
 
-            <!-- Si está autenticado -->
             <template v-else>
               <div class="user-dropdown">
                 <button class="user-btn" @click="toggleUserMenu" :class="{ active: showUserMenu }">
@@ -100,7 +95,6 @@
             </template>
           </div>
 
-          <!-- Mobile Menu Toggle -->
           <button class="mobile-menu-toggle" @click="toggleMobileMenu">
             <span class="hamburger" :class="{ active: showMobileMenu }">
               <span></span>
@@ -112,7 +106,6 @@
       </div>
     </div>
 
-    <!-- Main Navigation Menu -->
     <nav class="main-nav">
       <div class="nav-container">
         <div class="nav-links">
@@ -171,8 +164,6 @@
               </div>
             </div>
           </div>
-
-         
 
           <div class="nav-item dropdown-item">
             <RouterLink to="/regalos" class="nav-link">
@@ -237,7 +228,6 @@
       </div>
     </nav>
 
-    <!-- Mobile Menu -->
     <div class="mobile-menu" :class="{ active: showMobileMenu }">
       <div class="mobile-search">
         <div class="search-box">
@@ -365,7 +355,6 @@ onUnmounted(() => {
 
 <style scoped>
 
-/* Top Bar */
 .top-bar {
   background: var(--primary-blue);
   color: white;
@@ -384,6 +373,62 @@ onUnmounted(() => {
 
 .top-bar-left {
   font-weight: 500;
+  overflow: hidden;
+  flex: 1;
+}
+
+.marquee-container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+}
+
+.marquee-container::before,
+.marquee-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2rem;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-container::before {
+  left: 0;
+  background: linear-gradient(to right, var(--primary-blue), transparent);
+}
+
+.marquee-container::after {
+  right: 0;
+  background: linear-gradient(to left, var(--primary-blue), transparent);
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 15s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+.marquee-text {
+  display: inline-block;
+  font-weight: 500;
+  color: white;
+  opacity: 0.9;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .top-bar-right {
@@ -409,7 +454,6 @@ onUnmounted(() => {
   font-size: 1rem;
 }
 
-/* Navbar Principal */
 .navbar {
   background: var(--primary-white);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -433,7 +477,6 @@ onUnmounted(() => {
   height: 80px;
 }
 
-/* Brand/Logo */
 .navbar-brand {
   flex-shrink: 0;
 }
@@ -487,7 +530,6 @@ onUnmounted(() => {
   text-shadow: 0 2px 4px rgba(0, 240, 50, 0.1);
 }
 
-/* Search Container */
 .search-container {
   flex: 1;
   max-width: 500px;
@@ -545,7 +587,6 @@ onUnmounted(() => {
   color: var(--gray-500);
 }
 
-/* User Actions */
 .navbar-actions {
   display: flex;
   align-items: center;
@@ -553,7 +594,6 @@ onUnmounted(() => {
   flex-shrink: 0;
 }
 
-/* Carrito */
 .cart-btn {
   display: flex;
   align-items: center;
@@ -613,7 +653,6 @@ onUnmounted(() => {
   text-align: center;
 }
 
-/* Main Navigation Menu */
 .main-nav {
   background: linear-gradient(135deg, var(--gray-50), white);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
@@ -695,7 +734,6 @@ onUnmounted(() => {
   transform: rotate(180deg);
 }
 
-/* Large Dropdown Menus */
 .dropdown-menu-large {
   position: absolute;
   top: 100%;
@@ -778,7 +816,6 @@ onUnmounted(() => {
   background: rgba(0, 240, 50, 0.1);
 }
 
-/* Botones de Autenticación */
 .auth-btn {
   display: flex;
   align-items: center;
@@ -830,7 +867,6 @@ onUnmounted(() => {
   font-size: 0.875rem;
 }
 
-/* User Dropdown */
 .user-dropdown {
   position: relative;
 }
@@ -877,7 +913,6 @@ onUnmounted(() => {
   transform: rotate(180deg);
 }
 
-/* Dropdown Menu */
 .dropdown-menu {
   position: absolute;
   top: calc(100% + 0.5rem);
@@ -946,7 +981,6 @@ onUnmounted(() => {
   font-weight: 500;
 }
 
-/* Mobile Menu Toggle */
 .mobile-menu-toggle {
   display: none;
   background: none;
@@ -981,7 +1015,6 @@ onUnmounted(() => {
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
-/* Mobile Menu */
 .mobile-menu {
   display: none;
   background: white;
@@ -1074,7 +1107,6 @@ onUnmounted(() => {
   border-color: #fecaca;
 }
 
-/* Mobile Search */
 .mobile-search {
   padding: 1rem;
   border-bottom: 1px solid var(--gray-200);
@@ -1088,10 +1120,22 @@ onUnmounted(() => {
   background: white;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .top-bar {
     display: none;
+  }
+  
+  .marquee-container::before,
+  .marquee-container::after {
+    width: 1rem;
+  }
+  
+  .marquee-text {
+    font-size: 0.8rem;
+  }
+  
+  .marquee-content {
+    animation: marquee 12s linear infinite;
   }
   
   .main-nav {

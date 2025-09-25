@@ -1,6 +1,5 @@
 <template>
   <footer class="footer">
-    <!-- Newsletter Section -->
     <div class="newsletter-section">
       <div class="newsletter-container">
         <div class="newsletter-content">
@@ -33,10 +32,8 @@
       </div>
     </div>
 
-    <!-- Main Footer Content -->
     <div class="footer-main">
       <div class="footer-container">
-        <!-- Información -->
         <div class="footer-section">
           <h4 class="footer-title">Información</h4>
           <ul class="footer-links">
@@ -49,7 +46,6 @@
           </ul>
         </div>
 
-        <!-- Sobre nosotros -->
         <div class="footer-section">
           <h4 class="footer-title">Sobre nosotros</h4>
           <ul class="footer-links">
@@ -60,20 +56,19 @@
           </ul>
         </div>
 
-        <!-- Servicio al cliente -->
         <div class="footer-section">
           <h4 class="footer-title">Servicio al cliente</h4>
           <div class="contact-info">
             <div class="contact-item">
               <span class="contact-icon">📱</span>
-              <a href="https://wa.me/56945408979" class="contact-link">
-                Whatsapp +56 9 4540 8979
+              <a href="https://wa.me/56955555" class="contact-link">
+                Whatsapp +56 9 555555
               </a>
             </div>
             <div class="contact-item">
               <span class="contact-icon">✉️</span>
               <a href="mailto:sos@dandolahora.cl" class="contact-link">
-                sos@dandolahora.cl
+                soporte@gmail.com
               </a>
             </div>
             <div class="contact-item">
@@ -85,7 +80,6 @@
           </div>
         </div>
 
-        <!-- Redes sociales -->
         <div class="footer-section">
           <h4 class="footer-title">Síguenos</h4>
           <div class="social-links">
@@ -110,7 +104,6 @@
       </div>
     </div>
 
-    <!-- Footer Bottom -->
     <div class="footer-bottom">
       <div class="footer-bottom-container">
         <div class="footer-logo">
@@ -123,8 +116,7 @@
         </div>
         <div class="footer-legal">
           <p class="legal-text">
-            Al seleccionar una opción, se actualiza toda la página.<br>
-            Se abre en una nueva ventana.
+            Grupo1 UNAB
           </p>
         </div>
       </div>
@@ -170,13 +162,11 @@ const handleNewsletterSubmit = async () => {
 
 <style scoped>
 
-/* Footer Principal */
 .footer {
   background: var(--primary-white);
   border-top: 1px solid var(--gray-200);
 }
 
-/* Newsletter Section */
 .newsletter-section {
   background: var(--primary-blue);
   color: white;
@@ -271,7 +261,6 @@ const handleNewsletterSubmit = async () => {
   font-weight: 500;
 }
 
-/* Main Footer Content */
 .footer-main {
   padding: 3rem 0;
   background: var(--gray-50);
@@ -318,7 +307,6 @@ const handleNewsletterSubmit = async () => {
   color: var(--primary-green);
 }
 
-/* Contact Info */
 .contact-info {
   display: flex;
   flex-direction: column;
@@ -352,7 +340,6 @@ const handleNewsletterSubmit = async () => {
   font-size: 0.875rem;
 }
 
-/* Social Links */
 .social-links {
   display: flex;
   flex-direction: column;
@@ -381,7 +368,6 @@ const handleNewsletterSubmit = async () => {
   font-weight: 500;
 }
 
-/* Footer Bottom */
 .footer-bottom {
   background: var(--primary-white);
   border-top: 1px solid var(--gray-200);
@@ -436,7 +422,6 @@ const handleNewsletterSubmit = async () => {
   line-height: 1.4;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .newsletter-container {
     flex-direction: column;

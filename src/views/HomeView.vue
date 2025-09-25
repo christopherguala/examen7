@@ -4,7 +4,6 @@
       <h1 class="hero-title">¡Bienvenido a Dando La Hora!</h1>
       <p class="hero-subtitle">Tu tienda de relojes vintage y modernos</p>
       
-      <!-- Test de colores -->
       <div class="color-test">
         <h2>Test de Colores Aplicados</h2>
         <div class="color-grid">
