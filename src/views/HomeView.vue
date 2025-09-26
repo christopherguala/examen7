@@ -33,11 +33,13 @@
         </div>
       </div>
     </div>
+    <Products />
   </div>
 </template>
 
 <script setup>
 // Componente de prueba para verificar colores
+import Products from '../components/Products.vue'
 </script>
 
 <style scoped>
