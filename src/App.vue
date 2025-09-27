@@ -2,6 +2,7 @@
 import { RouterView } from 'vue-router'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
+import CartDetail from './components/CartDetail.vue'
 </script>
 
 <template>
@@ -10,6 +11,10 @@ import Footer from './components/Footer.vue'
     <main>
       <RouterView />
     </main>
+
+    
+    <CartDetail />
+
     <Footer />
   </div>
 </template>

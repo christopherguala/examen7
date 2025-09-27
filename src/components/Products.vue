@@ -1,13 +1,22 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { fetchProducts } from "../services/api.js";
+import { addToCart } from '../services/cart.js' 
 
 const products = ref([]);
 const searchQuery = ref("");
 
+
+const handleAddToCart = (product) => {
+  addToCart(product, 1)
+  alert(`${product.titulo} agregado al carrito`) 
+}
+
+
 onMounted(async () => {
   products.value = await fetchProducts();
 });
+
 
 const filteredProducts = computed(() =>
   products.value.filter(
@@ -16,10 +25,6 @@ const filteredProducts = computed(() =>
       p.descripcion.toLowerCase().includes(searchQuery.value.toLowerCase())
   )
 );
-
-function addToCart(product) {
-  alert(`"${product.titulo}" añadido al carrito`);
-}
 </script>
 
 <template>
@@ -53,7 +58,10 @@ function addToCart(product) {
             ${{ product.precio.toLocaleString() }}
           </p>
 
-          <button class="product-card__button" :disabled="product.stock === 0" @click="product.stock > 0 && addToCart(product)">
+          <button 
+            class="product-card__button" 
+            :disabled="product.stock === 0" 
+            @click="product.stock > 0 && handleAddToCart(product)">
             {{ product.stock > 0 ? 'Añadir al carrito' : 'Agotado' }}
           </button>
 
@@ -64,6 +72,7 @@ function addToCart(product) {
     <p v-if="filteredProducts.length === 0" class="products__empty">No se encontraron productos</p>
   </section>
 </template>
+
 
 <style scoped>
 .products {
