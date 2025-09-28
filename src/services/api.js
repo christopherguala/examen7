@@ -1,92 +1,24 @@
+
+
 export async function fetchProducts() {
-	return [
-		{
-			id: 1,
-			marca: "Casio",
-			titulo: "Reloj Casio Vintage F-91W-1DG Clásico Líneas Azules",
-			descripcion: "Un clásico de Casio con diseño retro y resistencia al agua.",
-			precio: 16000,
-			rating: 4.8,
-			reviews: 1161,
-			stock: 5,
-			imagen: "https://www.dandolahora.cl/cdn/shop/files/f91_360x.jpg",
-		},
-		{
-			id: 2,
-			marca: "Casio",
-			titulo: "Reloj Casio Vintage A158WA-1DF Azul/Plateado",
-			descripcion: "Modelo vintage en acero inoxidable plateado.",
-			precio: 25500,
-			rating: 4.6,
-			reviews: 392,
-			stock: 3,
-			imagen: "https://www.dandolahora.cl/cdn/shop/files/A158WA-1_Seq1_360x.jpg",
-		},
-		{
-			id: 3,
-			marca: "Casio",
-			titulo: "Reloj Casio Vintage AE-1500WH-8BVDF Pantalla Negativa",
-			descripcion: "Pantalla grande, retroiluminada y batería de 10 años.",
-			precio: 42000,
-			rating: 4.7,
-			reviews: 503,
-			stock: 2,
-			imagen: "https://www.dandolahora.cl/cdn/shop/products/Reloj-Casio-Vintage-AE-1500WH-8BVDF-Negro---Dando-la-Hora_360x.jpg",
-		},
-		{
-			id: 4,
-			marca: "Casio",
-			titulo: "Reloj Calculadora Casio Vintage CA-53W-1Z Negro",
-			descripcion: "Icónico reloj calculadora retro de Casio.",
-			precio: 28500,
-			rating: 4.4,
-			reviews: 359,
-			stock: 0,
-			imagen: "https://www.dandolahora.cl/cdn/shop/products/Reloj-Calculadora-Casio-Vintage-CA-53W-1Z-Negro---Dando-la-Hora_360x.jpg",
-		},
-		{
-			id: 5,
-			marca: "Tissot",
-			titulo: "Reloj Tissot PRX T137.410.11.041.00 Quartz 40mm",
-			descripcion: "Elegante reloj Tissot PRX de cuarzo con caja de acero y esfera azul.",
-			precio: 490000,
-			rating: 4.4,
-			reviews: 24,
-			stock: 5,
-			imagen: "https://www.dandolahora.cl/cdn/shop/products/RELOJ-TISSOT-PRX-T137.410.11.041.00-QUARTZ-40MM.jpg",
-		},
-		{
-			id: 6,
-			marca: "Tissot",
-			titulo: "Reloj Tissot PRX T137.410.11.091.01 Quartz 40mm 'Tiffany'",
-			descripcion: "Diseño moderno inspirado en los 70 con esfera 'Tiffany blue' y brazalete integrado.",
-			precio: 460000,
-			rating: 4.9,
-			reviews: 13,
-			stock: 0,
-			imagen: "https://www.dandolahora.cl/cdn/shop/products/Reloj-Tissot-PRX-T137.410.11.091.01-Quartz-40mm---Dando-la-Hora.jpg",
-		},
-		{
-			id: 7,
-			marca: "Tissot",
-			titulo: "Reloj Tissot PRX T137.410.11.091.00 Quartz 40mm",
-			descripcion: "Versión clásica del PRX Quartz con esfera verde y brazalete integrado.",
-			precio: 490000,
-			rating: 5.0,
-			reviews: 11,
-			stock: 10,
-			imagen: "https://www.dandolahora.cl/cdn/shop/products/Reloj-Tissot-PRX-T137.410.11.091.00-Quartz-40mm---Dando-la-Hora.jpg",
-		},
-		{
-			id: 8,
-			marca: "Tissot",
-			titulo: "Reloj Tissot PRX T137.407.11.041.00 Powermatic 80 40mm",
-			descripcion: "Modelo automático con calibre Powermatic 80 y esfera azul profunda.",
-			precio: 920000,
-			rating: 5.0,
-			reviews: 9,
-			stock: 3,
-			imagen: "https://www.dandolahora.cl/cdn/shop/products/Reloj-Tissot-PRX-T137.407.11.041.00-Powematic-80-40mm---Dando-la-Hora.jpg",
-		},
-	];
+  try {
+    const response = await fetch("http://localhost:4000/products");
+    if (!response.ok) throw new Error("Error al cargar productos");
+    const data = await response.json();
+
+    // Mapear los datos del JSON al formato que espera el componente
+    return data.map((p) => ({
+      id: p.id,
+      titulo: p.name,
+      descripcion: p.descripcion,
+      precio: p.price,
+      rating: p.nota,
+      reviews: p.nNotas,
+      stock: p.stock,
+      imagen: p.image
+    }));
+  } catch (error) {
+    console.error("fetchProducts error:", error);
+    return [];
+  }
 }
