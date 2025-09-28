@@ -16,14 +16,14 @@
             <button class="remove-btn" @click="removeItem(item.id)">Eliminar</button>
           </div>
         </div>
-
+s
         <div class="cart-total">
           <p>Total: ${{ totalPrice.toLocaleString() }}</p>
         </div>
 
         <div class="cart-actions">
-          <button @click="clearCart">Vaciar Carrito</button>
-          <button @click="checkout">Pagar</button>
+          <button class="clear-btn" @click="clearCart">Vaciar Carrito</button>
+          <button class="checkout-btn" @click="checkout">Pagar</button>
         </div>
       </div>
 
@@ -69,13 +69,14 @@ const checkout = () => {
 }
 
 .cart-modal {
-  background: #fff;
+  background: var(--dark-80);
   padding: 1rem;
   max-width: 500px;
   width: 90%;
   border-radius: 8px;
   overflow-y: auto;
   max-height: 80%;
+  color: var(--white);
 }
 
 .cart-header {
@@ -89,12 +90,14 @@ const checkout = () => {
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
+  color: var(--white);
 }
 
 .cart-item {
   display: flex;
   margin: 1rem 0;
   gap: 1rem;
+  align-items: center;
 }
 
 .cart-item-image {
@@ -108,12 +111,14 @@ const checkout = () => {
 }
 
 .remove-btn {
-  background: #ff4d4f;
-  color: #fff;
+  background: var(--red);
+  color: var(--white);
   border: none;
-  padding: 0.3rem 0.6rem;
+  padding: 0.4rem 0.8rem; 
+  font-size: 0.85rem;
   cursor: pointer;
   border-radius: 4px;
+  margin-top: 0.5rem;
 }
 
 .cart-total {
@@ -131,5 +136,21 @@ const checkout = () => {
 .cart-actions button {
   padding: 0.5rem 1rem;
   cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.clear-btn {
+  background: var(--red);
+  color: var(--white);
+}
+
+.checkout-btn {
+  background: var(--green);
+  color: var(--black);
 }
 </style>
+
+
+

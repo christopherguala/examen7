@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Reloj Casio Vintage F-91W-1DG Clásico Líneas Azules",
       "price": 16000,
       "nota": 5,
@@ -10,9 +10,9 @@
       "stock": 10,
       "descripcion": "Desde su creación a fines de los 80's, el reloj Casio F-91W-1DG se ha convertido en uno de los relojes más conocidos y vendidos a nivel global. Es un modelo que en su sencillo pero atractivo diseño reúne toda la esencia de la relojería digital. Es un clásico que nunca dejará de ocupar un lugar importante en el corazón de aquellos nostálgicos y nostálgicas de los 90's!"
     },
-    { 
-      "id": 2,
-      "name": "Reloj Casio Vintage A158WA-1DF Azul/Plateado", 
+    {
+      "id": "2",
+      "name": "Reloj Casio Vintage A158WA-1DF Azul/Plateado",
       "price": 25500,
       "nota": 4.8,
       "nNotas": 842,
@@ -21,27 +21,27 @@
       "descripcion": "Te presentamos el Casio A158WA-1DF, un reloj plateado digital clásico que nos transporta a la década de los 80's y que por alguna razón se mantiene tan vigente como el primer día. Es heredero del legendario Casio W-780, por lo que mantiene la estética retro adaptándola a las nuevas generaciones. Cuenta con correa de acero inoxidable que le otorga elegancia y resistencia. Un modelo vintage ideal para hombre y mujer. ¿Sigues viendo la hora en el celular? :). Si recuerdan la pelea entre Shakira cambiaste un rolex por un Casio, este fue el reloj que usó el futbolista. Es totalmente unisex. "
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Reloj Casio Vintage AE-1500WH-8BVDF Pantalla Negativa",
       "price": 42000,
       "nota": 5,
       "nNotas": 503,
       "image": "https://www.dandolahora.cl/cdn/shop/products/Reloj-Casio-Vintage-AE-1500WH-8BVDF-Negro---Dando-la-Hora.jpg?v=1620272579&width=612",
-      "stock": 4,
+      "stock": 0,
       "descripcion": "De gran tamaño, los AE-1500WH-8AVDF son la última novedad en Casio digital. Su diseño recuerda a algunos smartwatches, pero conservando la resistencia y cualidades vintage que nos ofrece la marca japonesa, no por nada nos ofrece 10 años de batería en el reloj. Incluye varias funciones interesantes fuera de su gran tamaño de pantalla para los cortos de vista, tiene 5 alarmas, cronómetro, cuenta regresiva, calendario y hora doble. Un reloj seguro de uso diario."
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Reloj Calculadora Casio Vintage CA-53W-1Z Negro",
       "price": 28500,
       "nota": 5,
       "nNotas": 259,
       "image": "https://www.dandolahora.cl/cdn/shop/products/Reloj-Calculadora-Casio-Vintage-CA-53W-1Z-Negro---Dando-la-Hora.jpg?v=1626751321&width=612",
       "stock": 20,
-      "description":"Presentamos el Casio CA-53W-1Z, un reloj de pulsera que es al mismo tiempo un reloj calculadora. Su clímax de popularidad fue a mediados de los 80's, cuando fue usado por Marty McFly en Volver al futuro. Este modelo es igualmente útil si eres un científico nuclear o trabajas en una panadería. Su diseño permite que sea usado por hombres y mujeres, sin distinciones. Además, en estos tiempos de pantallas táctiles ¿no te parece que apretar botones sigue siendo un placer? ¡Calculamos que así es!"
+      "description": "Presentamos el Casio CA-53W-1Z, un reloj de pulsera que es al mismo tiempo un reloj calculadora. Su clímax de popularidad fue a mediados de los 80's, cuando fue usado por Marty McFly en Volver al futuro. Este modelo es igualmente útil si eres un científico nuclear o trabajas en una panadería. Su diseño permite que sea usado por hombres y mujeres, sin distinciones. Además, en estos tiempos de pantallas táctiles ¿no te parece que apretar botones sigue siendo un placer? ¡Calculamos que así es!"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "Reloj Casio Vintage F-91W-3DG Clásico Líneas Verdes",
       "price": 21000,
       "nota": 5,
@@ -51,7 +51,7 @@
       "description": "El reloj Casio F-91W-3DG en tonos verde y negro que ahora te presentamos es uno de los modelos más conocidos y populares de la década de los 90's, que marcó el cambio de época e hizo más accesible la relojería digital en todo el mundo. Es un modelo ideal tanto para hombres como para mujeres, de todas las edades. ¿Sabías que pulsando el botón derecho más de 3 segundos se muestra en pantalla la palabra CASIO? :)"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Reloj Casio Vintage F-91WG-9SDF Clásico Líneas Amarillas",
       "price": 21000,
       "nota": 5,
@@ -61,145 +61,151 @@
       "description": "Les presentamos el Casio F-91WG 9SDF en tonos amarillo ocre y negro, uno de los relojes más vendidos de la historia, que no a disminuido de popularidad con el tiempo, probablemente debido a lo accesible y sencillo que resulta. Desde su lanzamiento a fines de la década de los 80's, ha tenido innumerables versiones y ha sido modificado para adecuarse a los nuevos tiempos. ¿Sabías que pulsando los 3 botones a la vez, la pantalla muestra todos los símbolos posibles del reloj? "
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "Reloj Casio Vintage LA670WGA-1DF Negro Dorado Mini",
       "price": 45000,
       "nota": 4,
       "nNotas": 98,
       "image": "https://www.dandolahora.cl/cdn/shop/products/Reloj-Casio-Vintage-LA670WGA-1DF-Negro-Dorado---Dando-la-Hora.jpg?v=1627571575&width=612",
-      "stock": 15,
-      "descripcion":"Es digital, de acabado cromado, correa de acero inoxidable, broche ajustable, cronómetro, alarma, calendario y  cuenta regresiva en bloques. Es uno de los modelos de Casio más antiguos aún en producción y uno de los grandes clásicos de todos los tiempos. "
+      "stock": -1,
+      "descripcion": "Es digital, de acabado cromado, correa de acero inoxidable, broche ajustable, cronómetro, alarma, calendario y  cuenta regresiva en bloques. Es uno de los modelos de Casio más antiguos aún en producción y uno de los grandes clásicos de todos los tiempos. "
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "Reloj Casio Vintage A168WA-1WDF Electroluminescence Plateado",
       "price": 35000,
       "nota": 4.5,
       "nNotas": 148,
       "image": "https://www.dandolahora.cl/cdn/shop/products/Reloj-Casio-Vintage-A168WA-1WDF-Plateado---Dando-la-Hora_5b6738d7-38aa-42f7-94dc-78c427e149c6.jpg?v=1737409286&width=612",
-      "stock": 5,
-      "descripcion":"Les traemos el clásico modelo Casio A168WA-1WDF  . Es uno de los superventas de la marca gracias a su diseño clásico, útiles funciones (alarma, cronómetro, calendario), pero la gracia frente a otros similares es la pantalla con tecnología electroluminescence que permite luz total desde detrás de la pantalla en lugar de la luz lateral que acompaña a varios modelos de este rango de precios. Si quieren un modelo unisex, clásico y con buena luz este es el indicado."
+      "stock": 4,
+      "descripcion": "Les traemos el clásico modelo Casio A168WA-1WDF  . Es uno de los superventas de la marca gracias a su diseño clásico, útiles funciones (alarma, cronómetro, calendario), pero la gracia frente a otros similares es la pantalla con tecnología electroluminescence que permite luz total desde detrás de la pantalla en lugar de la luz lateral que acompaña a varios modelos de este rango de precios. Si quieren un modelo unisex, clásico y con buena luz este es el indicado."
     },
     {
-      "id": 9,
+      "id": "9",
       "name": "Reloj Casio Vintage A168WG-9WDF Electroluminescence Dorado",
       "price": 62000,
       "nota": 5,
       "nNotas": 102,
       "image": "https://www.dandolahora.cl/cdn/shop/products/Reloj-Casio-Vintage--A168WG-9WDF-Dorado---Dando-la-Hora.jpg?v=1638893359&width=612",
       "stock": 8,
-      "descripcion":"Les traemos el clásico modelo Casio A168WG-9WDF  . Es uno de los superventas de la marca gracias a su diseño clásico, útiles funciones (alarma, cronómetro, calendario), pero la gracia frente a otros similares es la pantalla con tecnología electroluminescence que permite luz total desde detrás de la pantalla en lugar de la luz lateral que acompaña a varios modelos de este rango de precios. Si quieren un modelo unisex, clásico y con buena luz este es el indicado."
+      "descripcion": "Les traemos el clásico modelo Casio A168WG-9WDF  . Es uno de los superventas de la marca gracias a su diseño clásico, útiles funciones (alarma, cronómetro, calendario), pero la gracia frente a otros similares es la pantalla con tecnología electroluminescence que permite luz total desde detrás de la pantalla en lugar de la luz lateral que acompaña a varios modelos de este rango de precios. Si quieren un modelo unisex, clásico y con buena luz este es el indicado."
     },
     {
-      "id": 10,
+      "id": "10",
       "name": "Reloj Casio Vintage B640WC-5ADF Rosado Metálico Rosé",
       "price": 65000,
       "nota": 5,
       "nNotas": 140,
       "image": "https://www.dandolahora.cl/cdn/shop/products/Reloj-Casio-Vintage-B-640WC-5ADF-Rosado-Metalico---Dando-la-Hora.jpg?v=1638893523&width=612",
       "stock": 6,
-      "descripcion":" El reloj Casio B640WC-5ADF vintage en color rosado/metálico, pensado tanto para hombre como para mujer, incorpora en su diseño una caja curvada que le da un toque amigable a la rígida estructura de otros modelos similares. También cuenta con la tecnología Illuminator, que reemplaza a la clásica luz de costado. Además, es ideal para darse una puntual zambullida en la piscina!"
+      "descripcion": " El reloj Casio B640WC-5ADF vintage en color rosado/metálico, pensado tanto para hombre como para mujer, incorpora en su diseño una caja curvada que le da un toque amigable a la rígida estructura de otros modelos similares. También cuenta con la tecnología Illuminator, que reemplaza a la clásica luz de costado. Además, es ideal para darse una puntual zambullida en la piscina!"
     },
     {
-      "id": 11,
+      "id": "11",
       "name": "Reloj Casio Vintage F-91WS-7DF Plateado Blanco Transparente",
       "price": 32000,
       "nota": 3.5,
       "nNotas": 67,
       "image": "https://www.dandolahora.cl/cdn/shop/products/Reloj-Casio-Vintage-F-91WS-7DF-Blanco-Transparente---Dando-la-Hora.jpg?v=1600809917&width=612",
       "stock": 32,
-      "descripcion":"Este 2020 Casio Japón lanzó una línea de esta colección con correa transparente de colores para darle aún más vida y mantener vigente este clásico de todos los tiempos."
+      "descripcion": "Este 2020 Casio Japón lanzó una línea de esta colección con correa transparente de colores para darle aún más vida y mantener vigente este clásico de todos los tiempos."
     },
     {
-      "id": 12,
+      "id": "12",
       "name": "Reloj Casio Vintage AQ-230A-1DMQ Dial Negro",
       "price": 44500,
       "nota": 5,
       "nNotas": 78,
       "image": "https://www.dandolahora.cl/cdn/shop/files/AQ-230A-1DMQ.jpg?v=1735305660&width=612",
       "stock": 12,
-      "descripcion":" El modelo Casio AQ-230A-1DMQ  es una de las leyendas de Casio. Cuando aparecieron las pantallas de cristal liquido se generó una guerra entre quienes preferían los análogos y otros los digitales, pero ¿por qué no ambos? Así nació este estilo de modelos que fue muy popular durante los años 80s en varias compañías y que resiste hasta el día de hoy. En las funciones digitales tiene alarma, cronómetro, calendario y hora doble para ver dos horas diferentes a la vez. "
+      "descripcion": " El modelo Casio AQ-230A-1DMQ  es una de las leyendas de Casio. Cuando aparecieron las pantallas de cristal liquido se generó una guerra entre quienes preferían los análogos y otros los digitales, pero ¿por qué no ambos? Así nació este estilo de modelos que fue muy popular durante los años 80s en varias compañías y que resiste hasta el día de hoy. En las funciones digitales tiene alarma, cronómetro, calendario y hora doble para ver dos horas diferentes a la vez. "
     },
     {
-      "id": 13,
+      "id": "13",
       "name": "Reloj Casio Vintage LA-20WH-2ADF Azul",
       "price": 22000,
       "nota": 4.2,
       "nNotas": 121,
       "image": "https://www.dandolahora.cl/cdn/shop/products/Reloj-Casio-Vintage-LA-20WH-2ADF-Azul_2.jpg?v=1573446930&width=612",
       "stock": 9,
-      "descripcion":"Este clásico modelo Casio LA-20WH-2ADF, que pese a su pequeño tamaño y lineas sigue siendo un reloj querido por los amantes de los Casio vintage ochenteros, cuenta con una potente luz LED Illuminator, que te permitirá llegar con puntualidad a cualquier aventura nocturna. Este en particular destaca por su color azul profundo en toda su estructura. Es ideal para deporte y muñecas muy pequeñas"
+      "descripcion": "Este clásico modelo Casio LA-20WH-2ADF, que pese a su pequeño tamaño y lineas sigue siendo un reloj querido por los amantes de los Casio vintage ochenteros, cuenta con una potente luz LED Illuminator, que te permitirá llegar con puntualidad a cualquier aventura nocturna. Este en particular destaca por su color azul profundo en toda su estructura. Es ideal para deporte y muñecas muy pequeñas"
     },
     {
-      "id": 14,
+      "id": "14",
       "name": "Reloj World Time Royale Casio Vintage AE-1200WH-1AV Negro",
       "price": 39500,
       "nota": 5,
       "nNotas": 92,
       "image": "https://www.dandolahora.cl/cdn/shop/products/Reloj_Hombre_Casio_Vintage_AE-1200WH-1AVDF.jpg?v=1565742539&width=612",
       "stock": 2,
-      "descripcion":"Presentamos uno de los clásicos relojes retro de todos los tiempos: el Casio World Time Royale AE1200WH-1AVDF, un modelo que fue especialmente creado para aquellos que viajan constantemente o trabajan en movimiento, ya que cuenta con un sistema de hora múltiple ¡en el que puedes visualizar el horario de cuatro lugares a la vez! ¿Increíble y extremadamente útil no? Además, dentro de sus características cuenta con alarma, cronómetro, temporizador, calendario y una resistencia al agua de 100 mts. Vuelve a los 80's con este modelo vintage negro, uno de los más queridos de la galaxia!"
+      "descripcion": "Presentamos uno de los clásicos relojes retro de todos los tiempos: el Casio World Time Royale AE1200WH-1AVDF, un modelo que fue especialmente creado para aquellos que viajan constantemente o trabajan en movimiento, ya que cuenta con un sistema de hora múltiple ¡en el que puedes visualizar el horario de cuatro lugares a la vez! ¿Increíble y extremadamente útil no? Además, dentro de sus características cuenta con alarma, cronómetro, temporizador, calendario y una resistencia al agua de 100 mts. Vuelve a los 80's con este modelo vintage negro, uno de los más queridos de la galaxia!"
     },
     {
-      "id": 15,
+      "id": "15",
       "name": "Reloj Casio Vintage LF-20W-1ADF Twin-Graph Reissue Resina",
       "price": 36500,
       "nota": 5,
       "nNotas": 80,
       "image": "https://www.dandolahora.cl/cdn/shop/files/Reloj-Casio-Vintage-LF-20W-1ADF-Twin-Graph-Reissue-Resina---Dando-la-Hora.jpg?v=1690307061&width=612",
       "stock": 6,
-      "descripcion":"El modelo hoy es icónico y carísimo, pero gracias a los dioses relojeros vuelve en forma de la serie LF-20W, a un precio mucho más accesible y con la misma diversión. Tiene luz , cronómetro, calendario,5 alarmas, hora mundial, cuenta regresiva, fabricación de bioresina y hora en formato 12/24 hrs."
+      "descripcion": "El modelo hoy es icónico y carísimo, pero gracias a los dioses relojeros vuelve en forma de la serie LF-20W, a un precio mucho más accesible y con la misma diversión. Tiene luz , cronómetro, calendario,5 alarmas, hora mundial, cuenta regresiva, fabricación de bioresina y hora en formato 12/24 hrs."
     },
     {
-      "id": 16,
+      "id": "16",
       "name": "Reloj Casio Vintage LF-20W-1ADF Twin-Graph Reissue Resina",
       "price": 36500,
       "nota": 5,
       "nNotas": 80,
       "image": "https://www.dandolahora.cl/cdn/shop/files/Reloj-Casio-Vintage-LF-20W-1ADF-Twin-Graph-Reissue-Resina---Dando-la-Hora.jpg?v=1690307061&width=612",
       "stock": 6,
-      "descripcion":"El modelo hoy es icónico y carísimo, pero gracias a los dioses relojeros vuelve en forma de la serie LF-20W, a un precio mucho más accesible y con la misma diversión. Tiene luz , cronómetro, calendario,5 alarmas, hora mundial, cuenta regresiva, fabricación de bioresina y hora en formato 12/24 hrs."
+      "descripcion": "El modelo hoy es icónico y carísimo, pero gracias a los dioses relojeros vuelve en forma de la serie LF-20W, a un precio mucho más accesible y con la misma diversión. Tiene luz , cronómetro, calendario,5 alarmas, hora mundial, cuenta regresiva, fabricación de bioresina y hora en formato 12/24 hrs."
     },
     {
-      "id": 17,
+      "id": "17",
       "name": "Reloj Casio Vintage AE-1500WH-8B2VDF Pantalla Negativa",
       "price": 42000,
       "nota": 5,
       "nNotas": 80,
       "image": "https://www.dandolahora.cl/cdn/shop/files/Reloj-Casio-Vintage-AE-1500WH-8B2VDF-Negro---Dando-la-Hora.jpg?v=1687226034&width=612",
       "stock": 6,
-      "descripcion":"De gran tamaño, los AE-1500WH-8B2VDF son la última novedad en Casio digital. Su diseño recuerda a algunos smartwatches, pero conservando la resistencia y cualidades vintage que nos ofrece la marca japonesa, no por nada nos ofrece 10 años de batería en el reloj."
+      "descripcion": "De gran tamaño, los AE-1500WH-8B2VDF son la última novedad en Casio digital. Su diseño recuerda a algunos smartwatches, pero conservando la resistencia y cualidades vintage que nos ofrece la marca japonesa, no por nada nos ofrece 10 años de batería en el reloj."
     },
     {
-      "id": 18,
+      "id": "18",
       "name": "Reloj Casio Vintage W-218H-3AVDF Caja Verde",
       "price": 27500,
       "nota": 5,
       "nNotas": 80,
       "image": "https://www.dandolahora.cl/cdn/shop/products/Reloj-Casio-Vintage-W-218H-3AVDF-Correa-Verde.jpg?v=1585085876&width=612",
       "stock": 6,
-      "descripcion":"Les presento este Casio con aspecto indestructible. El W-218H-3AVDF, el cual tiene un aire a G-Shock y de seguro una duración que será equivalente. Es de resina, cuenta con cronómetro, luz illuminator, alarma y esa pantalla con números largos que le da buen estilo. Ideal para el agua ya que resiste 50 metros bajo el agua; quizás no es para acompañarte a una travesía de buceo, pero sí funcionará para la piscina en un finde semana."
+      "descripcion": "Les presento este Casio con aspecto indestructible. El W-218H-3AVDF, el cual tiene un aire a G-Shock y de seguro una duración que será equivalente. Es de resina, cuenta con cronómetro, luz illuminator, alarma y esa pantalla con números largos que le da buen estilo. Ideal para el agua ya que resiste 50 metros bajo el agua; quizás no es para acompañarte a una travesía de buceo, pero sí funcionará para la piscina en un finde semana."
     },
     {
-      "id": 19,
+      "id": "19",
       "name": "Reloj Casio Vintage F-91WS-4D Rosado Transparente",
       "price": 32000,
       "nota": 5,
       "nNotas": 56,
       "image": "https://www.dandolahora.cl/cdn/shop/products/Reloj-Casio-Vintage-F-91WS-4D-Rosado-Transparente---Dando-la-Hora.jpg?v=1598835796&width=612",
       "stock": 6,
-      "descripcion":"Desde su creación a fines de los 80's, el reloj Casio F-91W se ha convertido en uno de los relojes más conocidos y vendidos a nivel global. Es un modelo que en su sencillo pero atractivo diseño reúne toda la esencia de la relojería digital. Es un clásico que nunca dejará de ocupar un lugar importante en el corazón de aquellos nostálgicos y nostálgicas de los 90's!"
+      "descripcion": "Desde su creación a fines de los 80's, el reloj Casio F-91W se ha convertido en uno de los relojes más conocidos y vendidos a nivel global. Es un modelo que en su sencillo pero atractivo diseño reúne toda la esencia de la relojería digital. Es un clásico que nunca dejará de ocupar un lugar importante en el corazón de aquellos nostálgicos y nostálgicas de los 90's!"
     },
     {
-      "id": 20,
+      "id": "20",
       "name": "Reloj Casio Análogo-Digital Vintage AEQ-110W-1BVDF Negro",
       "price": 55000,
       "nota": 5,
       "nNotas": 79,
       "image": "https://www.dandolahora.cl/cdn/shop/products/Reloj-Casio-Analogo-Digital-Vintage-AEQ-110W-1BVDF-Negro.jpg?v=1585609746&width=612",
       "stock": 6,
-      "descripcion":"Su diseño robusto y con pantalla digital para diferentes funciones muestra que el diseño está claramente inspirado en las G-Shock GA - Series que llevan tantos años alegrando al mundo. Producto de esto cuenta con 100 metros de resistencia bajo el agua para que no se note pobreza. ¡También cuenta con Telememo! Así es, permite guardar números de teléfono en su dial análogo digital, ¿nada mal, verdad? También cuenta con funcionalidad World Time para ver la hora en diferentes ciudades del mundo, alarma incluso con función Snooze, cronómetro y cuenta regresiva."
+      "descripcion": "Su diseño robusto y con pantalla digital para diferentes funciones muestra que el diseño está claramente inspirado en las G-Shock GA - Series que llevan tantos años alegrando al mundo. Producto de esto cuenta con 100 metros de resistencia bajo el agua para que no se note pobreza. ¡También cuenta con Telememo! Así es, permite guardar números de teléfono en su dial análogo digital, ¿nada mal, verdad? También cuenta con funcionalidad World Time para ver la hora en diferentes ciudades del mundo, alarma incluso con función Snooze, cronómetro y cuenta regresiva."
     }
   ],
-  "users": [{ "id": 1, "email": "test@demo.com", "password": "123456" }]
+  "users": [
+    {
+      "id": "1",
+      "email": "test@demo.com",
+      "password": "123456"
+    }
+  ]
 }
