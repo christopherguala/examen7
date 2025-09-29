@@ -1,7 +1,5 @@
 
-
 <script setup>
-<<<<<<< HEAD
 import { useCart } from '../store/index.js'
 
 const { addToCart } = useCart()
@@ -12,15 +10,6 @@ defineProps({
 
 function addToCartHandler(product) {
   addToCart(product)
-=======
-import { addToCart } from '../services/cart.js' 
-defineProps({
-  product: Object
-})
-const handleAddToCart = (product) => {
-  addToCart(product, 1)
-  alert(`${product.titulo} agregado al carrito`) 
->>>>>>> 9d16b20798c06c4ef3090567b42d816df1562448
 }
 
 
@@ -49,7 +38,6 @@ const handleAddToCart = (product) => {
 
       <p class="product-card__price">${{ product.precio.toLocaleString() }}</p>
 
-<<<<<<< HEAD
       <button
         v-if="product.stock > 0"
         class="product-card__button"
@@ -58,14 +46,6 @@ const handleAddToCart = (product) => {
         Añadir al carrito
       </button>
       <p v-else class="product-card__soldout">Agotado</p>
-=======
-      <button 
-            class="product-card__button" 
-            :disabled="product.stock === 0" 
-            @click="product.stock > 0 && handleAddToCart(product)">
-            {{ product.stock > 0 ? 'Añadir al carrito' : 'Agotado' }}
-          </button>
->>>>>>> 9d16b20798c06c4ef3090567b42d816df1562448
     </div>
   </article>
 </template>
