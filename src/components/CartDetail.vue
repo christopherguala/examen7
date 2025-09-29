@@ -13,10 +13,10 @@
             <h3>{{ item.titulo }}</h3>
             <div class="quantity-control">
               <button @click="decreaseQuantity(item)">−</button>
-              <span>{{ item.cantidad }}</span>
+              <span>{{ item.quantity }}</span>
               <button @click="increaseQuantity(item)">+</button>
             </div>
-            <p>Precio: ${{ (item.precio * item.cantidad).toLocaleString() }}</p>
+            <p>Precio: ${{ (item.precio * item.quantity).toLocaleString() }}</p>
             <button class="remove-btn" @click="removeItem(item.id)">Eliminar</button>
           </div>
         </div>
@@ -40,25 +40,26 @@
 
 <script setup>
 import { computed } from 'vue'
-import { getCart, removeFromCart, clearCart, useCartOpen, closeCart, addToCart } from '../services/cart.js'
+import { useCart } from '../store/index.js'        // ✅ nuevo store
+import { useCartOpen, closeCart } from '../services/cart.js'  // (solo si usas este open/close)
 
-const cartItems = getCart()
+// ✅ Obtiene todo desde el nuevo store
+const { cartItems, addToCart, removeFromCart, updateQuantity, clearCart, cartTotal } = useCart()
+
 const isOpen = useCartOpen()
 
-const totalPrice = computed(() =>
-  cartItems.value.reduce((sum, item) => sum + item.precio * item.cantidad, 0)
-)
+// ✅ Total ya viene desde el store, pero si quieres dejarlo igual:
+const totalPrice = computed(() => cartTotal.value)
 
+// ✅ Usar `quantity` en lugar de `cantidad`
 const removeItem = (id) => removeFromCart(id)
 const clearCartHandler = () => clearCart()
 
-const increaseQuantity = (item) => addToCart(item, 1)
+const increaseQuantity = (item) => addToCart(item)
+
 const decreaseQuantity = (item) => {
-  if (item.cantidad > 1) {
-    item.cantidad -= 1
-  } else {
-    removeFromCart(item.id)
-  }
+  const newQty = item.quantity - 1
+  updateQuantity(item.id, newQty)
 }
 
 const checkout = () => {

@@ -184,6 +184,7 @@ import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useCart, useAuth } from '../store/index.js'
 import AuthModal from './AuthModal.vue'
+import { openCart } from '../services/cart.js'
 
 // Usar el store
 const { cartItems, addToCart, removeFromCart, cartCount, cartTotal } = useCart()
@@ -250,7 +251,7 @@ const closeAuthModal = () => {
 }
 
 const toggleCart = () => {
-  showCartPanel.value = !showCartPanel.value
+  openCart()
 }
 
 const closeCart = () => {
