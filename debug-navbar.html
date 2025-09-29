@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Navbar</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #0a0a0a;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .debug-info {
+            background: #1a1a1a;
+            padding: 20px;
+            margin: 20px;
+            border: 2px solid #00f032;
+            border-radius: 8px;
+        }
+        .error {
+            color: #fe3301;
+        }
+        .success {
+            color: #00f032;
+        }
+        .info {
+            color: #00d4ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-info">
+        <h1>🔍 Debug del Navbar</h1>
+        <p>Si no ves el navbar en la aplicación principal, aquí está la información de debug:</p>
+        
+        <div id="debug-output"></div>
+        
+        <h2>📋 Pasos para verificar:</h2>
+        <ol>
+            <li>Abre la consola del navegador (F12)</li>
+            <li>Ve a <strong>http://localhost:5177</strong></li>
+            <li>Busca errores en la consola</li>
+            <li>Verifica que no hay errores de JavaScript</li>
+        </ol>
+        
+        <h2>🔧 Posibles problemas:</h2>
+        <ul>
+            <li>Error en el store/index.js</li>
+            <li>Problema con las importaciones</li>
+            <li>Error en el componente CyberNavbar.vue</li>
+            <li>Problema con Vue Router</li>
+        </ul>
+    </div>
+
+    <script>
+        // Simular verificación del store
+        function checkStore() {
+            const output = document.getElementById('debug-output');
+            
+            try {
+                // Verificar localStorage
+                const users = localStorage.getItem('cyberWatch_users');
+                const currentUser = localStorage.getItem('cyberWatch_user');
+                const isLoggedIn = localStorage.getItem('cyberWatch_isLoggedIn');
+                
+                let html = '<h3>📊 Estado del Store:</h3>';
+                html += `<p><strong>Usuarios:</strong> ${users ? '✅ Encontrados' : '❌ No encontrados'}</p>`;
+                html += `<p><strong>Usuario actual:</strong> ${currentUser ? '✅ ' + JSON.parse(currentUser).name : '❌ No logueado'}</p>`;
+                html += `<p><strong>Estado login:</strong> ${isLoggedIn ? '✅ Logueado' : '❌ No logueado'}</p>`;
+                
+                output.innerHTML = html;
+            } catch (error) {
+                output.innerHTML = `<p class="error">❌ Error al verificar store: ${error.message}</p>`;
+            }
+        }
+        
+        // Ejecutar verificación
+        checkStore();
+    </script>
+</body>
+</html>

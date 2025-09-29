@@ -1,12 +1,16 @@
 
 
 <script setup>
+import { useCart } from '../store/index.js'
+
+const { addToCart } = useCart()
+
 defineProps({
   product: Object
 })
 
-function addToCart(product) {
-  alert(`"${product.titulo}" añadido al carrito`)
+function addToCartHandler(product) {
+  addToCart(product)
 }
 </script>
 
@@ -36,7 +40,7 @@ function addToCart(product) {
       <button
         v-if="product.stock > 0"
         class="product-card__button"
-        @click="addToCart(product)"
+        @click="addToCartHandler(product)"
       >
         Añadir al carrito
       </button>

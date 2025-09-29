@@ -3,7 +3,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { fetchProducts } from '../services/api.js'
+import { useCart } from '../store/index.js'
 import ProductCard from './ProductCard.vue'
+
+const { addToCart } = useCart()
 
 const items = ref([])
 const cardsContainer = ref(null)

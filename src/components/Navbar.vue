@@ -3,10 +3,10 @@
     <!-- Top Bar con Marquesina -->
     <div class="top-bar">
       <div class="marquee-section">
-        <div class="marquee-content">
+            <div class="marquee-content">
           <span class="marquee-text">🕒 Lunes a Viernes (Horario de atención 10:00-17:00) 🕒</span>
-        </div>
-      </div>
+            </div>
+          </div>
       <div class="contact-info">
         <a href="https://wa.me/56955555" class="contact-link whatsapp">
           <span class="contact-icon">📱</span>
@@ -27,7 +27,7 @@
           <RouterLink to="/" class="brand-link">
             <div class="brand-logo">
               <div class="brand-text">
-                <span class="brand-name">Dando La Hora</span>
+              <span class="brand-name">Dando La Hora</span>
                 <span class="brand-tagline">Relojes Vintage & Modernos</span>
               </div>
             </div>
@@ -38,16 +38,16 @@
         <div class="search-section">
           <div class="search-wrapper">
             <div class="search-input-group">
-              <input 
-                type="text" 
-                placeholder="Buscar relojes, marcas, accesorios..." 
-                class="search-input"
-                v-model="searchQuery"
-                @keyup.enter="handleSearch"
-              />
-              <button class="search-btn" @click="handleSearch">
-                <span class="search-icon">🔍</span>
-              </button>
+            <input 
+              type="text" 
+              placeholder="Buscar relojes, marcas, accesorios..." 
+              class="search-input"
+              v-model="searchQuery"
+              @keyup.enter="handleSearch"
+            />
+            <button class="search-btn" @click="handleSearch">
+              <span class="search-icon">🔍</span>
+            </button>
             </div>
           </div>
         </div>
@@ -63,49 +63,14 @@
           </button>
 
           <div class="user-section">
-            <template v-if="!userStore.isAuthenticated">
-              <RouterLink to="/login" class="action-btn login-btn">
-                <div class="btn-icon">👤</div>
-                <div class="btn-content">
-                  <span class="btn-text">Login</span>
-                </div>
-              </RouterLink>
-            </template>
-
-            <template v-else>
-              <div class="user-dropdown" @click="toggleUserMenu">
-                <button class="action-btn user-btn" :class="{ active: showUserMenu }">
-                  <div class="btn-icon">👤</div>
-                  <div class="btn-content">
-                    <span class="btn-text">{{ userStore.user?.name || 'Usuario' }}</span>
-                  </div>
-                  <div class="dropdown-arrow" :class="{ active: showUserMenu }">▼</div>
-                </button>
-                
-                <div class="dropdown-menu" v-show="showUserMenu">
-                  <div class="dropdown-header">
-                    <div class="user-info">
-                      <span class="user-email">{{ userStore.user?.email }}</span>
-                    </div>
-                  </div>
-                  <div class="dropdown-divider"></div>
-                  <RouterLink to="/profile" class="dropdown-item">
-                    <span class="item-icon">⚙️</span>
-                    <span class="item-text">Mi Perfil</span>
-                  </RouterLink>
-                  <RouterLink to="/orders" class="dropdown-item">
-                    <span class="item-icon">📦</span>
-                    <span class="item-text">Mis Pedidos</span>
-                  </RouterLink>
-                  <div class="dropdown-divider"></div>
-                  <button class="dropdown-item logout-item" @click="handleLogout">
-                    <span class="item-icon">🚪</span>
-                    <span class="item-text">Cerrar Sesión</span>
-                  </button>
-                </div>
+            <div class="action-btn login-btn">
+              <div class="btn-icon">👤</div>
+              <div class="btn-content">
+                <span class="btn-text">Login</span>
               </div>
-            </template>
+            </div>
           </div>
+
 
           <button class="mobile-toggle" @click="toggleMobileMenu">
             <span class="hamburger" :class="{ active: showMobileMenu }">
@@ -130,47 +95,47 @@
             
                 <!-- Dropdown Menu para Relojes -->
                 <div class="dropdown-menu-relojes" v-if="item.name === 'Relojes'">
-                  <div class="dropdown-content">
-                    <div class="dropdown-section">
+              <div class="dropdown-content">
+                <div class="dropdown-section">
                       <h4 class="section-title">⭐ Productos Destacados</h4>
                       <button @click="viewFeaturedProduct('f-91w')" class="dropdown-link featured">
                         <span class="product-image">🕒</span>
                         <div class="product-info">
                           <span class="link-text">Casio F-91W Clásico</span>
                           <span class="product-price">$16.000</span>
-                        </div>
+                </div>
                       </button>
                       <button @click="viewFeaturedProduct('calculadora')" class="dropdown-link featured">
                         <span class="product-image">🧮</span>
                         <div class="product-info">
                           <span class="link-text">Reloj Calculadora</span>
                           <span class="product-price">$28.500</span>
-                        </div>
+              </div>
                       </button>
                       <button @click="viewFeaturedProduct('world time')" class="dropdown-link featured">
                         <span class="product-image">🌍</span>
                         <div class="product-info">
                           <span class="link-text">World Time Royale</span>
                           <span class="product-price">$39.500</span>
-                        </div>
+            </div>
                       </button>
                       <button @click="viewFeaturedProduct('transparente')" class="dropdown-link featured">
                         <span class="product-image">🔍</span>
                         <div class="product-info">
                           <span class="link-text">Transparentes 2024</span>
                           <span class="product-price">$32.000</span>
-                        </div>
+          </div>
                       </button>
                       <button @click="viewFeaturedProduct('pantalla negativa')" class="dropdown-link featured">
                         <span class="product-image">📱</span>
                         <div class="product-info">
                           <span class="link-text">Pantalla Negativa</span>
                           <span class="product-price">$42.000</span>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
                 </div>
+                      </button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -194,7 +159,7 @@
       </div>
       
       <div class="mobile-nav">
-        <div class="mobile-nav-links">
+      <div class="mobile-nav-links">
           <RouterLink 
             v-for="(item, index) in navItems" 
             :key="index"
@@ -208,37 +173,10 @@
       </div>
       
       <div class="mobile-actions">
-        <template v-if="!userStore.isAuthenticated">
-          <RouterLink to="/login" class="mobile-action-btn" @click="closeMobileMenu">
-            <span class="btn-icon">👤</span>
-            <span class="btn-text">Iniciar Sesión</span>
-          </RouterLink>
-        </template>
-        <template v-else>
-          <div class="mobile-user-info">
-            <div class="mobile-user-header">
-              <span class="user-avatar">👤</span>
-              <div class="user-details">
-                <span class="user-name">{{ userStore.user?.name || 'Usuario' }}</span>
-                <span class="user-email">{{ userStore.user?.email }}</span>
-              </div>
-            </div>
-            <div class="mobile-user-actions">
-              <RouterLink to="/profile" class="mobile-action-btn" @click="closeMobileMenu">
-                <span class="item-icon">⚙️</span>
-                <span class="item-text">Mi Perfil</span>
-              </RouterLink>
-              <RouterLink to="/orders" class="mobile-action-btn" @click="closeMobileMenu">
-                <span class="item-icon">📦</span>
-                <span class="item-text">Mis Pedidos</span>
-              </RouterLink>
-              <button class="mobile-action-btn logout-btn" @click="handleLogout">
-                <span class="item-icon">🚪</span>
-                <span class="item-text">Cerrar Sesión</span>
-              </button>
-            </div>
-          </div>
-        </template>
+        <div class="mobile-action-btn" @click="closeMobileMenu">
+          <span class="btn-icon">👤</span>
+          <span class="btn-text">Iniciar Sesión</span>
+        </div>
       </div>
     </div>
 
@@ -256,15 +194,10 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { RouterLink } from 'vue-router'
-import { useUserStore } from '../store/user.js'
 import { fetchProducts } from '../services/api.js'
 import ProductDetailPopup from './ProductDetailPopup.vue'
 
-// Store
-const userStore = useUserStore()
-
 // Estado local
-const showUserMenu = ref(false)
 const showMobileMenu = ref(false)
 const cartCount = ref(0)
 const searchQuery = ref('')
@@ -282,10 +215,6 @@ const navItems = ref([
 ])
 
 // Métodos
-const toggleUserMenu = () => {
-  showUserMenu.value = !showUserMenu.value
-}
-
 const toggleMobileMenu = () => {
   showMobileMenu.value = !showMobileMenu.value
 }
@@ -304,12 +233,6 @@ const handleSearch = () => {
   }
 }
 
-const handleLogout = () => {
-  userStore.logout()
-  showUserMenu.value = false
-  closeMobileMenu()
-  window.location.href = '/'
-}
 
 // Función para buscar productos por término de búsqueda
 const searchProductByTerm = async (searchTerm) => {
@@ -423,8 +346,8 @@ const addToWishlist = (product) => {
 
 // Cerrar menús al hacer click fuera
 const handleClickOutside = (event) => {
-  if (!event.target.closest('.user-dropdown')) {
-    showUserMenu.value = false
+  if (!event.target.closest('.mobile-menu') && !event.target.closest('.mobile-toggle')) {
+    showMobileMenu.value = false
   }
 }
 

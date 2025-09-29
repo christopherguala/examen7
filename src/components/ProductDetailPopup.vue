@@ -658,3 +658,4 @@ const addToWishlist = () => {
   }
 }
 </style>
+

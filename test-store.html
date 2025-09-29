@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Store</title>
+    <style>
+        body {
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .test-section {
+            background: #2a2a2a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 2px solid #00f032;
+        }
+        .success { color: #00f032; }
+        .error { color: #fe3301; }
+        .info { color: #00d4ff; }
+        button {
+            background: #00f032;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test del Store</h1>
+    
+    <div class="test-section">
+        <h2>1. Verificar Store Functions</h2>
+        <button onclick="testStore()">Probar Store</button>
+        <div id="store-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Verificar LocalStorage</h2>
+        <button onclick="checkLocalStorage()">Verificar LocalStorage</button>
+        <div id="storage-result"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Crear Usuario Demo</h2>
+        <button onclick="createDemoUser()">Crear Usuario Demo</button>
+        <div id="demo-result"></div>
+    </div>
+
+    <script>
+        // Simular las funciones del store
+        function getFromStorage(key) {
+            try {
+                const data = localStorage.getItem(key);
+                return data ? JSON.parse(data) : null;
+            } catch (error) {
+                console.error('Error reading from localStorage:', error);
+                return null;
+            }
+        }
+
+        function saveToStorage(key, data) {
+            try {
+                localStorage.setItem(key, JSON.stringify(data));
+                console.log(`💾 Guardado en localStorage: ${key}`, data);
+                return true;
+            } catch (error) {
+                console.error('Error saving to localStorage:', error);
+                return false;
+            }
+        }
+
+        function getUsers() {
+            return getFromStorage('cyberWatch_users') || [];
+        }
+
+        function saveUsers(users) {
+            return saveToStorage('cyberWatch_users', users);
+        }
+
+        function testStore() {
+            const result = document.getElementById('store-result');
+            
+            try {
+                // Test getFromStorage
+                const testData = getFromStorage('test_key');
+                
+                // Test saveToStorage
+                const saveResult = saveToStorage('test_key', { test: 'data' });
+                
+                // Test getUsers
+                const users = getUsers();
+                
+                let html = '<div class="success">✅ Store Functions Test:</div>';
+                html += `<div class="info">- getFromStorage: ${testData ? 'OK' : 'OK (null)'}</div>`;
+                html += `<div class="info">- saveToStorage: ${saveResult ? 'OK' : 'ERROR'}</div>`;
+                html += `<div class="info">- getUsers: OK (${users.length} usuarios)</div>`;
+                
+                result.innerHTML = html;
+            } catch (error) {
+                result.innerHTML = `<div class="error">❌ Error en store: ${error.message}</div>`;
+            }
+        }
+
+        function checkLocalStorage() {
+            const result = document.getElementById('storage-result');
+            
+            try {
+                const keys = Object.keys(localStorage);
+                let html = '<div class="info">📦 LocalStorage Keys:</div>';
+                
+                if (keys.length === 0) {
+                    html += '<div class="info">- Vacío</div>';
+                } else {
+                    keys.forEach(key => {
+                        html += `<div class="info">- ${key}</div>`;
+                    });
+                }
+                
+                result.innerHTML = html;
+            } catch (error) {
+                result.innerHTML = `<div class="error">❌ Error accediendo localStorage: ${error.message}</div>`;
+            }
+        }
+
+        function createDemoUser() {
+            const result = document.getElementById('demo-result');
+            
+            try {
+                const demoUser = {
+                    id: 'demo-001',
+                    name: 'Usuario Demo',
+                    email: 'demo@test.com',
+                    password: '123456',
+                    phone: '+56 9 1234 5678',
+                    createdAt: new Date().toISOString(),
+                    avatar: 'https://ui-avatars.com/api/?name=Usuario+Demo&background=00f032&color=000000&size=100'
+                };
+                
+                const users = getUsers();
+                const existingDemo = users.find(u => u.email === demoUser.email);
+                
+                if (!existingDemo) {
+                    users.push(demoUser);
+                    saveUsers(users);
+                    result.innerHTML = '<div class="success">✅ Usuario demo creado exitosamente</div>';
+                } else {
+                    result.innerHTML = '<div class="info">ℹ️ Usuario demo ya existe</div>';
+                }
+            } catch (error) {
+                result.innerHTML = `<div class="error">❌ Error creando usuario demo: ${error.message}</div>`;
+            }
+        }
+
+        // Ejecutar tests al cargar
+        window.onload = function() {
+            testStore();
+            checkLocalStorage();
+            createDemoUser();
+        };
+    </script>
+</body>
+</html>

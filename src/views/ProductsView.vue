@@ -120,10 +120,14 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { fetchProducts } from '../services/api.js'
+import { useCart } from '../store/index.js'
 import ProductDetailPopup from '../components/ProductDetailPopup.vue'
 
 const route = useRoute()
 const router = useRouter()
+
+// Usar el store del carrito
+const { addToCart: addToCartStore } = useCart()
 
 // Estado reactivo
 const products = ref([])
@@ -293,6 +297,8 @@ const closeProductPopup = () => {
 
 const addToCart = (product) => {
   if (product.stock > 0) {
+    addToCartStore(product)
+    
     // Mostrar notificación de éxito
     const notification = document.createElement('div')
     notification.className = 'cart-notification'

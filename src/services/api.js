@@ -2,7 +2,7 @@
 
 export async function fetchProducts() {
   try {
-    const response = await fetch("http://localhost:4000/products");
+    const response = await fetch("http://localhost:3001/products");
     if (!response.ok) throw new Error("Error al cargar productos");
     const data = await response.json();
 
