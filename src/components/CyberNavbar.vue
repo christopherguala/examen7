@@ -3,8 +3,16 @@
     <!-- Marquesina cibernética -->
     <div class="cyber-marquee">
       <div class="marquee-content">
-        <span class="marquee-text">🕒 RELOJES VINTAGE • CASIO • ORIENT • SEIKO • TIEMPO PRECISO • RESISTENCIA EXTREMA • TECNOLOGÍA JAPONESA • CALIDAD SUPERIOR • DISEÑO RETRO • FUNCIONALIDAD MODERNA •</span>
-        <span class="marquee-text">🕒 RELOJES VINTAGE • CASIO • ORIENT • SEIKO • TIEMPO PRECISO • RESISTENCIA EXTREMA • TECNOLOGÍA JAPONESA • CALIDAD SUPERIOR • DISEÑO RETRO • FUNCIONALIDAD MODERNA •</span>
+        <span class="marquee-text"
+          >🕒 RELOJES VINTAGE • CASIO • ORIENT • SEIKO • TIEMPO PRECISO •
+          RESISTENCIA EXTREMA • TECNOLOGÍA JAPONESA • CALIDAD SUPERIOR • DISEÑO
+          RETRO • FUNCIONALIDAD MODERNA •</span
+        >
+        <span class="marquee-text"
+          >🕒 RELOJES VINTAGE • CASIO • ORIENT • SEIKO • TIEMPO PRECISO •
+          RESISTENCIA EXTREMA • TECNOLOGÍA JAPONESA • CALIDAD SUPERIOR • DISEÑO
+          RETRO • FUNCIONALIDAD MODERNA •</span
+        >
       </div>
     </div>
 
@@ -23,17 +31,28 @@
 
         <!-- Navegación central -->
         <div class="nav-center">
-          <RouterLink to="/" class="nav-link" :class="{ active: $route.path === '/' }">
+          <RouterLink
+            to="/"
+            class="nav-link"
+            :class="{ active: $route.path === '/' }"
+          >
             <span class="nav-text">Inicio</span>
           </RouterLink>
-          <RouterLink to="/productos" class="nav-link" :class="{ active: $route.path === '/productos' }">
+          <RouterLink
+            to="/productos"
+            class="nav-link"
+            :class="{ active: $route.path === '/productos' }"
+          >
             <span class="nav-text">Productos</span>
           </RouterLink>
-          <RouterLink to="/relojes" class="nav-link" :class="{ active: $route.path === '/relojes' }">
+          <RouterLink
+            to="/relojes"
+            class="nav-link"
+            :class="{ active: $route.path === '/relojes' }"
+          >
             <span class="nav-text">Relojes</span>
           </RouterLink>
         </div>
-
 
         <!-- Información del usuario -->
         <div v-if="isLoggedIn && currentUser" class="user-info">
@@ -49,10 +68,21 @@
         <!-- Acciones del usuario -->
         <div class="nav-actions">
           <!-- Botón de carrito -->
-          <button class="action-btn cart-btn" @click="toggleCart" :class="{ 'has-items': cartCount > 0 }">
+          <button
+            class="action-btn cart-btn"
+            @click="toggleCart"
+            :class="{ 'has-items': cartCount > 0 }"
+          >
             <div class="btn-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8"/>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 5M7 13l2.5 5m0 0h8"
+                />
               </svg>
               <div class="cart-count" v-if="cartCount > 0">{{ cartCount }}</div>
             </div>
@@ -64,21 +94,32 @@
           <div v-if="isLoggedIn && currentUser" class="user-dropdown-container">
             <button class="action-btn login-btn" @click="toggleUserDropdown">
               <div class="btn-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
                 </svg>
               </div>
               <span class="btn-text">Hola, {{ currentUser.name }}</span>
-              <div class="dropdown-arrow" :class="{ open: showUserDropdown }">▼</div>
+              <div class="dropdown-arrow" :class="{ open: showUserDropdown }">
+                ▼
+              </div>
               <div class="btn-glow"></div>
             </button>
-            
+
             <!-- Dropdown menu -->
             <div class="user-dropdown" :class="{ open: showUserDropdown }">
               <div class="dropdown-header">
                 <div class="user-info-mini">
-                  <img :src="currentUser.avatar" :alt="currentUser.name" class="user-avatar-mini" />
+                  <img
+                    :src="currentUser.avatar"
+                    :alt="currentUser.name"
+                    class="user-avatar-mini"
+                  />
                   <div class="user-details-mini">
                     <div class="user-name-mini">{{ currentUser.name }}</div>
                     <div class="user-email-mini">{{ currentUser.email }}</div>
@@ -94,13 +135,18 @@
               </div>
             </div>
           </div>
-          
+
           <!-- Botón de login simple cuando no está logueado -->
           <button v-else class="action-btn login-btn" @click="toggleAuth">
             <div class="btn-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
               </svg>
             </div>
             <span class="btn-text">Login</span>
@@ -109,9 +155,18 @@
 
           <!-- Menú hamburguesa para móvil -->
           <button class="mobile-menu-btn" @click="toggleMobileMenu">
-            <span class="hamburger-line" :class="{ active: mobileMenuOpen }"></span>
-            <span class="hamburger-line" :class="{ active: mobileMenuOpen }"></span>
-            <span class="hamburger-line" :class="{ active: mobileMenuOpen }"></span>
+            <span
+              class="hamburger-line"
+              :class="{ active: mobileMenuOpen }"
+            ></span>
+            <span
+              class="hamburger-line"
+              :class="{ active: mobileMenuOpen }"
+            ></span>
+            <span
+              class="hamburger-line"
+              :class="{ active: mobileMenuOpen }"
+            ></span>
           </button>
         </div>
       </div>
@@ -122,10 +177,18 @@
           <RouterLink to="/" class="mobile-nav-link" @click="closeMobileMenu">
             <span>Inicio</span>
           </RouterLink>
-          <RouterLink to="/productos" class="mobile-nav-link" @click="closeMobileMenu">
+          <RouterLink
+            to="/productos"
+            class="mobile-nav-link"
+            @click="closeMobileMenu"
+          >
             <span>Productos</span>
           </RouterLink>
-          <RouterLink to="/relojes" class="mobile-nav-link" @click="closeMobileMenu">
+          <RouterLink
+            to="/relojes"
+            class="mobile-nav-link"
+            @click="closeMobileMenu"
+          >
             <span>Relojes</span>
           </RouterLink>
         </div>
@@ -133,15 +196,24 @@
           <button class="mobile-action-btn" @click="toggleCart">
             <span>Carrito ({{ cartCount }})</span>
           </button>
-          <button class="mobile-action-btn" @click="isLoggedIn ? handleLogout() : toggleAuth()">
-            <span>{{ isLoggedIn ? (currentUser ? currentUser.name : 'Usuario') : 'Login' }}</span>
+          <button
+            class="mobile-action-btn"
+            @click="isLoggedIn ? handleLogout() : toggleAuth()"
+          >
+            <span>{{
+              isLoggedIn
+                ? currentUser
+                  ? currentUser.name
+                  : "Usuario"
+                : "Login"
+            }}</span>
           </button>
         </div>
       </div>
     </nav>
 
     <!-- Modal de Autenticación -->
-    <AuthModal 
+    <AuthModal
       :isVisible="showAuthModal"
       @close="closeAuthModal"
       @success="handleAuthSuccess"
@@ -160,19 +232,23 @@
         </div>
         <div v-else class="cart-items">
           <div v-for="item in cartItems" :key="item.id" class="cart-item">
-            <img :src="item.imagen" :alt="item.titulo" class="cart-item-image">
+            <img
+              :src="item.imagen"
+              :alt="item.titulo"
+              class="cart-item-image"
+            />
             <div class="cart-item-info">
               <h4>{{ item.titulo }}</h4>
               <p>${{ item.precio.toLocaleString() }}</p>
             </div>
-            <button class="remove-item-btn" @click="removeFromCart(item.id)">×</button>
+            <button class="remove-item-btn" @click="removeFromCart(item.id)">
+              ×
+            </button>
           </div>
         </div>
       </div>
       <div v-if="cartItems.length > 0" class="cart-footer">
-        <div class="cart-total">
-          Total: ${{ cartTotal.toLocaleString() }}
-        </div>
+        <div class="cart-total">Total: ${{ cartTotal.toLocaleString() }}</div>
         <button class="checkout-btn">Proceder al Pago</button>
       </div>
     </div>
@@ -180,120 +256,121 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
-import { RouterLink } from 'vue-router'
-import { useCart, useAuth } from '../store/index.js'
-import AuthModal from './AuthModal.vue'
+import { onMounted, onUnmounted, ref, watch } from "vue";
+import { RouterLink } from "vue-router";
+import { useAuth, useCart } from "../store/index.js";
+import AuthModal from "./AuthModal.vue";
 
 // Usar el store
-const { cartItems, addToCart, removeFromCart, cartCount, cartTotal } = useCart()
-const { isLoggedIn, currentUser, login, logout } = useAuth()
+const { cartItems, addToCart, removeFromCart, cartCount, cartTotal } =
+  useCart();
+const { isLoggedIn, currentUser, login, logout } = useAuth();
 
 // Estado reactivo
-const mobileMenuOpen = ref(false)
-const showAuthModal = ref(false)
-const showCartPanel = ref(false)
-const showUserDropdown = ref(false)
+const mobileMenuOpen = ref(false);
+const showAuthModal = ref(false);
+const showCartPanel = ref(false);
+const showUserDropdown = ref(false);
 
 // Debug: Log del estado de autenticación
-console.log('🔍 CyberNavbar - Estado inicial:', { 
-  isLoggedIn: isLoggedIn.value, 
+console.log("🔍 CyberNavbar - Estado inicial:", {
+  isLoggedIn: isLoggedIn.value,
   currentUser: currentUser.value,
-  showAuthModal: showAuthModal.value 
-})
+  showAuthModal: showAuthModal.value,
+});
 
 // Debug: Log cuando cambian los estados
 watch(isLoggedIn, (newValue) => {
-  console.log('🔍 CyberNavbar - isLoggedIn cambió a:', newValue)
-})
+  console.log("🔍 CyberNavbar - isLoggedIn cambió a:", newValue);
+});
 
 watch(currentUser, (newValue) => {
-  console.log('🔍 CyberNavbar - currentUser cambió a:', newValue)
-})
+  console.log("🔍 CyberNavbar - currentUser cambió a:", newValue);
+});
 
 watch(showAuthModal, (newValue) => {
-  console.log('🔍 CyberNavbar - showAuthModal cambió a:', newValue)
-})
+  console.log("🔍 CyberNavbar - showAuthModal cambió a:", newValue);
+});
 
 // Los computed properties ya vienen del store
 
 // Métodos
 const toggleMobileMenu = () => {
-  mobileMenuOpen.value = !mobileMenuOpen.value
-}
+  mobileMenuOpen.value = !mobileMenuOpen.value;
+};
 
 const closeMobileMenu = () => {
-  mobileMenuOpen.value = false
-}
+  mobileMenuOpen.value = false;
+};
 
 const toggleAuth = () => {
-  console.log('🔐 toggleAuth llamado, estado actual:', showAuthModal.value)
-  console.log('🔐 Botón de login clickeado!')
-  showAuthModal.value = !showAuthModal.value
-  console.log('🔐 Nuevo estado showAuthModal:', showAuthModal.value)
-  
+  console.log("🔐 toggleAuth llamado, estado actual:", showAuthModal.value);
+  console.log("🔐 Botón de login clickeado!");
+  showAuthModal.value = !showAuthModal.value;
+  console.log("🔐 Nuevo estado showAuthModal:", showAuthModal.value);
+
   // Debug adicional
-  console.log('🔍 Estado completo después de toggle:', {
+  console.log("🔍 Estado completo después de toggle:", {
     showAuthModal: showAuthModal.value,
     isLoggedIn: isLoggedIn.value,
-    currentUser: currentUser.value
-  })
-  
+    currentUser: currentUser.value,
+  });
+
   // Forzar actualización visual
   setTimeout(() => {
-    console.log('🔍 Estado después de timeout:', showAuthModal.value)
-  }, 100)
-}
+    console.log("🔍 Estado después de timeout:", showAuthModal.value);
+  }, 100);
+};
 
 const closeAuthModal = () => {
-  showAuthModal.value = false
-}
+  showAuthModal.value = false;
+};
 
 const toggleCart = () => {
-  showCartPanel.value = !showCartPanel.value
-}
+  showCartPanel.value = !showCartPanel.value;
+};
 
 const closeCart = () => {
-  showCartPanel.value = false
-}
+  showCartPanel.value = false;
+};
 
 const toggleUserDropdown = () => {
-  showUserDropdown.value = !showUserDropdown.value
-}
+  showUserDropdown.value = !showUserDropdown.value;
+};
 
 const closeUserDropdown = () => {
-  showUserDropdown.value = false
-}
+  showUserDropdown.value = false;
+};
 
 const handleAuthSuccess = (user) => {
-  console.log('🎉 AuthModal emitió success con usuario:', user)
-  showNotification(`¡Bienvenido ${user.name}!`, 'success')
+  console.log("🎉 AuthModal emitió success con usuario:", user);
+  showNotification(`¡Bienvenido ${user.name}!`, "success");
   // El estado ya se actualizó en el store, no necesitamos hacer nada más
-}
+};
 
 const handleLogout = () => {
-  console.log('🚪 Iniciando logout...')
-  logout()
-  showUserDropdown.value = false // Cerrar dropdown al hacer logout
-  showNotification('Sesión cerrada exitosamente', 'info')
-  console.log('✅ Logout completado')
-}
+  console.log("🚪 Iniciando logout...");
+  logout();
+  showUserDropdown.value = false; // Cerrar dropdown al hacer logout
+  showNotification("Sesión cerrada exitosamente", "info");
+  console.log("✅ Logout completado");
+};
 
 const forceLogout = () => {
-  console.log('🔄 Forzando logout...')
-  logout()
-  showUserDropdown.value = false
-  showAuthModal.value = false
-  console.log('🔄 Logout forzado completado')
-}
+  console.log("🔄 Forzando logout...");
+  logout();
+  showUserDropdown.value = false;
+  showAuthModal.value = false;
+  console.log("🔄 Logout forzado completado");
+};
 
 // Las funciones addToCart y removeFromCart ya vienen del store
 
-const showNotification = (message, type = 'info') => {
-  const notification = document.createElement('div')
-  notification.className = `cyber-notification ${type}`
-  notification.textContent = message
-  
+const showNotification = (message, type = "info") => {
+  const notification = document.createElement("div");
+  notification.className = `cyber-notification ${type}`;
+  notification.textContent = message;
+
   notification.style.cssText = `
     position: fixed;
     top: 20px;
@@ -307,53 +384,56 @@ const showNotification = (message, type = 'info') => {
     animation: slideInRight 0.3s ease-out;
     font-weight: 600;
     border: 2px solid rgba(255, 255, 255, 0.2);
-  `
-  
-  if (type === 'success') {
-    notification.style.background = 'linear-gradient(135deg, #00f032, #02c02b)'
-  } else if (type === 'error') {
-    notification.style.background = 'linear-gradient(135deg, #fe3301, #e02e01)'
+  `;
+
+  if (type === "success") {
+    notification.style.background = "linear-gradient(135deg, #00f032, #02c02b)";
+  } else if (type === "error") {
+    notification.style.background = "linear-gradient(135deg, #fe3301, #e02e01)";
   }
-  
-  document.body.appendChild(notification)
-  
+
+  document.body.appendChild(notification);
+
   setTimeout(() => {
-    notification.style.animation = 'slideOutRight 0.3s ease-out'
+    notification.style.animation = "slideOutRight 0.3s ease-out";
     setTimeout(() => {
       if (document.body.contains(notification)) {
-        document.body.removeChild(notification)
+        document.body.removeChild(notification);
       }
-    }, 300)
-  }, 3000)
-}
+    }, 300);
+  }, 3000);
+};
 
 // Cerrar modales al hacer clic fuera
 const handleClickOutside = (event) => {
   // Solo cerrar el modal si se hace click en el backdrop (no en el contenido del modal)
-  if (showAuthModal.value && event.target.classList.contains('auth-modal')) {
-    closeAuthModal()
+  if (showAuthModal.value && event.target.classList.contains("auth-modal")) {
+    closeAuthModal();
   }
-  if (showCartPanel.value && !event.target.closest('.cart-panel')) {
-    closeCart()
+  if (showCartPanel.value && !event.target.closest(".cart-panel")) {
+    closeCart();
   }
-  if (showUserDropdown.value && !event.target.closest('.user-dropdown-container')) {
-    closeUserDropdown()
+  if (
+    showUserDropdown.value &&
+    !event.target.closest(".user-dropdown-container")
+  ) {
+    closeUserDropdown();
   }
-}
+};
 
 onMounted(() => {
-  document.addEventListener('click', handleClickOutside)
-})
+  document.addEventListener("click", handleClickOutside);
+});
 
 onUnmounted(() => {
-  document.removeEventListener('click', handleClickOutside)
-})
+  document.removeEventListener("click", handleClickOutside);
+});
 
 // Exponer métodos para uso externo
 defineExpose({
   addToCart,
-  removeFromCart
-})
+  removeFromCart,
+});
 </script>
 
 <style scoped>
@@ -402,7 +482,8 @@ defineExpose({
 }
 
 @keyframes glow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 5px var(--cyber-primary);
   }
   50% {
@@ -411,7 +492,8 @@ defineExpose({
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -421,11 +503,17 @@ defineExpose({
 
 /* Marquesina cibernética */
 .cyber-marquee {
-  background: linear-gradient(90deg, var(--cyber-dark), var(--cyber-gray), var(--cyber-dark));
+  background: linear-gradient(
+    90deg,
+    var(--cyber-dark),
+    var(--cyber-gray),
+    var(--cyber-dark)
+  );
   border-bottom: 2px solid var(--cyber-primary);
   overflow: hidden;
   position: relative;
   height: 40px;
+  backdrop-filter: blur(80px);
 }
 
 .marquee-content {
@@ -436,7 +524,7 @@ defineExpose({
 
 .marquee-text {
   color: var(--cyber-primary);
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   font-weight: bold;
   font-size: 14px;
   padding: 10px 0;
@@ -447,7 +535,7 @@ defineExpose({
 
 /* Navbar principal */
 .cyber-navbar {
-  background: linear-gradient(135deg, var(--cyber-dark), var(--cyber-gray));
+  background: rgba(0, 0, 0, 0.9);
   border-bottom: 3px solid var(--cyber-primary);
   position: sticky;
   top: 0;
@@ -457,6 +545,7 @@ defineExpose({
 
 .navbar-main {
   padding: 0;
+  backdrop-filter: blur(80px);
 }
 
 .nav-container {
@@ -505,7 +594,7 @@ defineExpose({
   color: var(--cyber-accent);
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 }
 
 /* Navegación central */
@@ -528,13 +617,18 @@ defineExpose({
 }
 
 .nav-link::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0, 240, 50, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 240, 50, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -795,7 +889,12 @@ defineExpose({
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -1156,36 +1255,36 @@ defineExpose({
   .nav-container {
     padding: 1rem;
   }
-  
+
   .nav-center {
     display: none;
   }
-  
+
   .mobile-menu-btn {
     display: flex;
   }
-  
+
   .mobile-menu {
     display: block;
   }
-  
+
   .action-btn .btn-text {
     display: none;
   }
-  
+
   .action-btn {
     padding: 0.75rem;
   }
-  
+
   .cart-panel {
     width: 100%;
     right: -100%;
   }
-  
+
   .logo-main {
     font-size: 1.2rem;
   }
-  
+
   .logo-sub {
     font-size: 0.6rem;
   }
@@ -1195,23 +1294,23 @@ defineExpose({
   .nav-container {
     padding: 0.75rem;
   }
-  
+
   .logo-icon {
     font-size: 1.5rem;
   }
-  
+
   .logo-main {
     font-size: 1rem;
   }
-  
+
   .action-btn {
     padding: 0.5rem;
   }
-  
+
   .user-info {
     display: none;
   }
-  
+
   .user-dropdown {
     min-width: 200px;
     right: -50px;
