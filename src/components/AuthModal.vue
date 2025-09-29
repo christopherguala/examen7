@@ -2,23 +2,23 @@
   <div class="auth-modal" :class="{ open: isVisible }" @click="closeModal">
     <div class="modal-content" @click.stop>
       <div class="modal-header">
-        <h3>{{ isLoginMode ? 'Acceso al Sistema' : 'Registro de Usuario' }}</h3>
+        <h3>{{ isLoginMode ? "Acceso al Sistema" : "Registro de Usuario" }}</h3>
         <button class="close-btn" @click="closeModal">×</button>
       </div>
-      
+
       <div class="modal-body">
         <!-- Tabs para cambiar entre login y registro -->
         <div class="auth-tabs">
-          <button 
-            class="tab-btn" 
-            :class="{ active: isLoginMode }" 
+          <button
+            class="tab-btn"
+            :class="{ active: isLoginMode }"
             @click="setLoginMode(true)"
           >
             Login
           </button>
-          <button 
-            class="tab-btn" 
-            :class="{ active: !isLoginMode }" 
+          <button
+            class="tab-btn"
+            :class="{ active: !isLoginMode }"
             @click="setLoginMode(false)"
           >
             Registro
@@ -26,43 +26,53 @@
         </div>
 
         <!-- Formulario de Login -->
-        <form v-if="isLoginMode" @submit.prevent="handleLogin" class="auth-form">
+        <form
+          v-if="isLoginMode"
+          @submit.prevent="handleLogin"
+          class="auth-form"
+        >
           <div class="form-group">
             <label>Email</label>
-            <input 
-              type="email" 
-              v-model="loginForm.email" 
+            <input
+              type="email"
+              v-model="loginForm.email"
               placeholder="tu@email.com"
               required
               :class="{ error: loginErrors.email }"
-            >
-            <span v-if="loginErrors.email" class="error-message">{{ loginErrors.email }}</span>
+            />
+            <span v-if="loginErrors.email" class="error-message">{{
+              loginErrors.email
+            }}</span>
           </div>
-          
+
           <div class="form-group">
             <label>Contraseña</label>
             <div class="password-input">
-              <input 
-                :type="showLoginPassword ? 'text' : 'password'" 
-                v-model="loginForm.password" 
+              <input
+                :type="showLoginPassword ? 'text' : 'password'"
+                v-model="loginForm.password"
                 placeholder="••••••••"
                 required
                 :class="{ error: loginErrors.password }"
-              >
-              <button 
-                type="button" 
+              />
+              <button
+                type="button"
                 class="password-toggle"
                 @click="showLoginPassword = !showLoginPassword"
               >
-                {{ showLoginPassword ? '👁️' : '👁️‍🗨️' }}
+                {{ showLoginPassword ? "👁️" : "👁️‍🗨️" }}
               </button>
             </div>
-            <span v-if="loginErrors.password" class="error-message">{{ loginErrors.password }}</span>
+            <span v-if="loginErrors.password" class="error-message">{{
+              loginErrors.password
+            }}</span>
           </div>
 
           <button type="submit" class="auth-submit-btn" :disabled="isLoading">
             <span v-if="isLoading" class="loading-spinner"></span>
-            <span class="btn-text">{{ isLoading ? 'Accediendo...' : 'Acceder' }}</span>
+            <span class="btn-text">{{
+              isLoading ? "Accediendo..." : "Acceder"
+            }}</span>
             <div class="btn-glow"></div>
           </button>
         </form>
@@ -71,84 +81,96 @@
         <form v-else @submit.prevent="handleRegister" class="auth-form">
           <div class="form-group">
             <label>Nombre Completo</label>
-            <input 
-              type="text" 
-              v-model="registerForm.name" 
+            <input
+              type="text"
+              v-model="registerForm.name"
               placeholder="Tu nombre completo"
               required
               :class="{ error: registerErrors.name }"
-            >
-            <span v-if="registerErrors.name" class="error-message">{{ registerErrors.name }}</span>
+            />
+            <span v-if="registerErrors.name" class="error-message">{{
+              registerErrors.name
+            }}</span>
           </div>
 
           <div class="form-group">
             <label>Email</label>
-            <input 
-              type="email" 
-              v-model="registerForm.email" 
+            <input
+              type="email"
+              v-model="registerForm.email"
               placeholder="tu@email.com"
               required
               :class="{ error: registerErrors.email }"
-            >
-            <span v-if="registerErrors.email" class="error-message">{{ registerErrors.email }}</span>
+            />
+            <span v-if="registerErrors.email" class="error-message">{{
+              registerErrors.email
+            }}</span>
           </div>
 
           <div class="form-group">
             <label>Contraseña</label>
             <div class="password-input">
-              <input 
-                :type="showRegisterPassword ? 'text' : 'password'" 
-                v-model="registerForm.password" 
+              <input
+                :type="showRegisterPassword ? 'text' : 'password'"
+                v-model="registerForm.password"
                 placeholder="••••••••"
                 required
                 :class="{ error: registerErrors.password }"
-              >
-              <button 
-                type="button" 
+              />
+              <button
+                type="button"
                 class="password-toggle"
                 @click="showRegisterPassword = !showRegisterPassword"
               >
-                {{ showRegisterPassword ? '👁️' : '👁️‍🗨️' }}
+                {{ showRegisterPassword ? "👁️" : "👁️‍🗨️" }}
               </button>
             </div>
-            <span v-if="registerErrors.password" class="error-message">{{ registerErrors.password }}</span>
+            <span v-if="registerErrors.password" class="error-message">{{
+              registerErrors.password
+            }}</span>
           </div>
 
           <div class="form-group">
             <label>Confirmar Contraseña</label>
             <div class="password-input">
-              <input 
-                :type="showConfirmPassword ? 'text' : 'password'" 
-                v-model="registerForm.confirmPassword" 
+              <input
+                :type="showConfirmPassword ? 'text' : 'password'"
+                v-model="registerForm.confirmPassword"
                 placeholder="••••••••"
                 required
                 :class="{ error: registerErrors.confirmPassword }"
-              >
-              <button 
-                type="button" 
+              />
+              <button
+                type="button"
                 class="password-toggle"
                 @click="showConfirmPassword = !showConfirmPassword"
               >
-                {{ showConfirmPassword ? '👁️' : '👁️‍🗨️' }}
+                {{ showConfirmPassword ? "👁️" : "👁️‍🗨️" }}
               </button>
             </div>
-            <span v-if="registerErrors.confirmPassword" class="error-message">{{ registerErrors.confirmPassword }}</span>
+            <span v-if="registerErrors.confirmPassword" class="error-message">{{
+              registerErrors.confirmPassword
+            }}</span>
           </div>
 
           <div class="form-group">
             <label>Teléfono (Opcional)</label>
-            <input 
-              type="tel" 
-              v-model="registerForm.phone" 
+            <input
+              type="tel"
+              v-model="registerForm.phone"
               placeholder="+56 9 1234 5678"
               :class="{ error: registerErrors.phone }"
-            >
-            <span v-if="registerErrors.phone" class="error-message">{{ registerErrors.phone }}</span>
+            />
+            <span v-if="registerErrors.phone" class="error-message">{{
+              registerErrors.phone
+            }}</span>
           </div>
 
           <button type="submit" class="auth-submit-btn" :disabled="isLoading">
             <span v-if="isLoading" class="loading-spinner"></span>
-            <span class="btn-text">{{ isLoading ? 'Registrando...' : 'Registrarse' }}</span>
+            <span class="btn-text">{{
+              isLoading ? "Registrando..." : "Registrarse"
+            }}</span>
             <div class="btn-glow"></div>
           </button>
         </form>
@@ -163,203 +185,206 @@
 </template>
 
 <script setup>
-import { ref, reactive, watch } from 'vue'
-import { useAuth } from '../store/index.js'
+import { reactive, ref, watch } from "vue";
+import { useAuth } from "../store/index.js";
 
 const props = defineProps({
   isVisible: {
     type: Boolean,
-    default: false
-  }
-})
+    default: false,
+  },
+});
 
-const emit = defineEmits(['close', 'success'])
+const emit = defineEmits(["close", "success"]);
 
 // Debug: Log cuando cambia la visibilidad
-console.log('🔍 AuthModal - isVisible:', props.isVisible)
+console.log("🔍 AuthModal - isVisible:", props.isVisible);
 
 // Watcher para debug
-watch(() => props.isVisible, (newValue) => {
-  console.log('🔍 AuthModal - isVisible cambió a:', newValue)
-})
+watch(
+  () => props.isVisible,
+  (newValue) => {
+    console.log("🔍 AuthModal - isVisible cambió a:", newValue);
+  }
+);
 
 // Usar el store de autenticación
-const { login, register, logout, isLoggedIn, currentUser } = useAuth()
+const { login, register, logout, isLoggedIn, currentUser } = useAuth();
 
 // Estado del componente
-const isLoginMode = ref(true)
-const isLoading = ref(false)
-const message = ref('')
-const messageType = ref('success')
-const showLoginPassword = ref(false)
-const showRegisterPassword = ref(false)
-const showConfirmPassword = ref(false)
+const isLoginMode = ref(true);
+const isLoading = ref(false);
+const message = ref("");
+const messageType = ref("success");
+const showLoginPassword = ref(false);
+const showRegisterPassword = ref(false);
+const showConfirmPassword = ref(false);
 
 // Formularios
 const loginForm = reactive({
-  email: '',
-  password: ''
-})
+  email: "",
+  password: "",
+});
 
 const registerForm = reactive({
-  name: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-  phone: ''
-})
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  phone: "",
+});
 
 // Errores
 const loginErrors = reactive({
-  email: '',
-  password: ''
-})
+  email: "",
+  password: "",
+});
 
 const registerErrors = reactive({
-  name: '',
-  email: '',
-  password: '',
-  confirmPassword: '',
-  phone: ''
-})
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  phone: "",
+});
 
 // Métodos
 const setLoginMode = (mode) => {
-  isLoginMode.value = mode
-  clearForms()
-  clearErrors()
-  clearMessage()
-}
+  isLoginMode.value = mode;
+  clearForms();
+  clearErrors();
+  clearMessage();
+};
 
 const clearForms = () => {
-  Object.keys(loginForm).forEach(key => {
-    loginForm[key] = ''
-  })
-  Object.keys(registerForm).forEach(key => {
-    registerForm[key] = ''
-  })
-}
+  Object.keys(loginForm).forEach((key) => {
+    loginForm[key] = "";
+  });
+  Object.keys(registerForm).forEach((key) => {
+    registerForm[key] = "";
+  });
+};
 
 const clearErrors = () => {
-  Object.keys(loginErrors).forEach(key => {
-    loginErrors[key] = ''
-  })
-  Object.keys(registerErrors).forEach(key => {
-    registerErrors[key] = ''
-  })
-}
+  Object.keys(loginErrors).forEach((key) => {
+    loginErrors[key] = "";
+  });
+  Object.keys(registerErrors).forEach((key) => {
+    registerErrors[key] = "";
+  });
+};
 
 const clearMessage = () => {
-  message.value = ''
-}
+  message.value = "";
+};
 
-const showMessage = (text, type = 'success') => {
-  message.value = text
-  messageType.value = type
+const showMessage = (text, type = "success") => {
+  message.value = text;
+  messageType.value = type;
   setTimeout(() => {
-    clearMessage()
-  }, 5000)
-}
+    clearMessage();
+  }, 5000);
+};
 
 const validateEmail = (email) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  return emailRegex.test(email)
-}
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
 
 const validatePassword = (password) => {
-  return password.length >= 6
-}
+  return password.length >= 6;
+};
 
 const validatePhone = (phone) => {
-  if (!phone) return true // Opcional
-  const phoneRegex = /^[\+]?[0-9\s\-\(\)]{8,}$/
-  return phoneRegex.test(phone)
-}
+  if (!phone) return true; // Opcional
+  const phoneRegex = /^[\+]?[0-9\s\-\(\)]{8,}$/;
+  return phoneRegex.test(phone);
+};
 
 const handleLogin = async () => {
-  clearErrors()
-  isLoading.value = true
+  clearErrors();
+  isLoading.value = true;
 
   // Validaciones
   if (!loginForm.email) {
-    loginErrors.email = 'El email es requerido'
+    loginErrors.email = "El email es requerido";
   } else if (!validateEmail(loginForm.email)) {
-    loginErrors.email = 'El email no es válido'
+    loginErrors.email = "El email no es válido";
   }
 
   if (!loginForm.password) {
-    loginErrors.password = 'La contraseña es requerida'
+    loginErrors.password = "La contraseña es requerida";
   } else if (!validatePassword(loginForm.password)) {
-    loginErrors.password = 'La contraseña debe tener al menos 6 caracteres'
+    loginErrors.password = "La contraseña debe tener al menos 6 caracteres";
   }
 
   // Si hay errores, no continuar
   if (loginErrors.email || loginErrors.password) {
-    isLoading.value = false
-    return
+    isLoading.value = false;
+    return;
   }
 
   try {
-    console.log('🔐 Iniciando proceso de login...')
-    const result = login(loginForm.email, loginForm.password)
-    console.log('📋 Resultado del login:', result)
-    
+    console.log("🔐 Iniciando proceso de login...");
+    const result = login(loginForm.email, loginForm.password);
+    console.log("📋 Resultado del login:", result);
+
     if (result.success) {
-      showMessage('¡Bienvenido!', 'success')
-      console.log('🎉 Emitiendo evento success con usuario:', result.user)
-      emit('success', result.user)
+      showMessage("¡Bienvenido!", "success");
+      console.log("🎉 Emitiendo evento success con usuario:", result.user);
+      emit("success", result.user);
       setTimeout(() => {
-        closeModal()
-      }, 1500)
+        closeModal();
+      }, 1500);
     } else {
-      console.log('❌ Login fallido:', result.message)
-      showMessage(result.message, 'error')
+      console.log("❌ Login fallido:", result.message);
+      showMessage(result.message, "error");
     }
   } catch (error) {
-    console.error('💥 Error en el proceso de login:', error)
-    showMessage('Error al iniciar sesión', 'error')
+    console.error("💥 Error en el proceso de login:", error);
+    showMessage("Error al iniciar sesión", "error");
   } finally {
-    isLoading.value = false
+    isLoading.value = false;
   }
-}
+};
 
 const handleRegister = async () => {
-  clearErrors()
-  isLoading.value = true
+  clearErrors();
+  isLoading.value = true;
 
   // Validaciones
   if (!registerForm.name) {
-    registerErrors.name = 'El nombre es requerido'
+    registerErrors.name = "El nombre es requerido";
   } else if (registerForm.name.length < 2) {
-    registerErrors.name = 'El nombre debe tener al menos 2 caracteres'
+    registerErrors.name = "El nombre debe tener al menos 2 caracteres";
   }
 
   if (!registerForm.email) {
-    registerErrors.email = 'El email es requerido'
+    registerErrors.email = "El email es requerido";
   } else if (!validateEmail(registerForm.email)) {
-    registerErrors.email = 'El email no es válido'
+    registerErrors.email = "El email no es válido";
   }
 
   if (!registerForm.password) {
-    registerErrors.password = 'La contraseña es requerida'
+    registerErrors.password = "La contraseña es requerida";
   } else if (!validatePassword(registerForm.password)) {
-    registerErrors.password = 'La contraseña debe tener al menos 6 caracteres'
+    registerErrors.password = "La contraseña debe tener al menos 6 caracteres";
   }
 
   if (!registerForm.confirmPassword) {
-    registerErrors.confirmPassword = 'Confirma tu contraseña'
+    registerErrors.confirmPassword = "Confirma tu contraseña";
   } else if (registerForm.password !== registerForm.confirmPassword) {
-    registerErrors.confirmPassword = 'Las contraseñas no coinciden'
+    registerErrors.confirmPassword = "Las contraseñas no coinciden";
   }
 
   if (registerForm.phone && !validatePhone(registerForm.phone)) {
-    registerErrors.phone = 'El teléfono no es válido'
+    registerErrors.phone = "El teléfono no es válido";
   }
 
   // Si hay errores, no continuar
-  if (Object.values(registerErrors).some(error => error)) {
-    isLoading.value = false
-    return
+  if (Object.values(registerErrors).some((error) => error)) {
+    isLoading.value = false;
+    return;
   }
 
   try {
@@ -367,44 +392,47 @@ const handleRegister = async () => {
       name: registerForm.name,
       email: registerForm.email,
       password: registerForm.password,
-      phone: registerForm.phone || null
-    })
-    
+      phone: registerForm.phone || null,
+    });
+
     if (result.success) {
-      showMessage('¡Usuario registrado exitosamente!', 'success')
+      showMessage("¡Usuario registrado exitosamente!", "success");
       // Auto-login después del registro
       setTimeout(() => {
-        const loginResult = login(registerForm.email, registerForm.password)
+        const loginResult = login(registerForm.email, registerForm.password);
         if (loginResult.success) {
-          emit('success', loginResult.user)
-          closeModal()
+          emit("success", loginResult.user);
+          closeModal();
         }
-      }, 1500)
+      }, 1500);
     } else {
-      showMessage(result.message, 'error')
+      showMessage(result.message, "error");
     }
   } catch (error) {
-    showMessage('Error al registrar usuario', 'error')
+    showMessage("Error al registrar usuario", "error");
   } finally {
-    isLoading.value = false
+    isLoading.value = false;
   }
-}
+};
 
 const closeModal = () => {
-  clearForms()
-  clearErrors()
-  clearMessage()
-  emit('close')
-}
+  clearForms();
+  clearErrors();
+  clearMessage();
+  emit("close");
+};
 
 // Limpiar formularios cuando se cierra el modal
-watch(() => props.isVisible, (newValue) => {
-  if (!newValue) {
-    clearForms()
-    clearErrors()
-    clearMessage()
+watch(
+  () => props.isVisible,
+  (newValue) => {
+    if (!newValue) {
+      clearForms();
+      clearErrors();
+      clearMessage();
+    }
   }
-})
+);
 </script>
 
 <style scoped>
@@ -428,7 +456,7 @@ watch(() => props.isVisible, (newValue) => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -436,7 +464,7 @@ watch(() => props.isVisible, (newValue) => {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(80px);
 }
 
 .auth-modal.open {
@@ -651,8 +679,12 @@ watch(() => props.isVisible, (newValue) => {
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .btn-glow {
@@ -661,7 +693,12 @@ watch(() => props.isVisible, (newValue) => {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s ease;
 }
 
@@ -708,32 +745,32 @@ watch(() => props.isVisible, (newValue) => {
     width: 95%;
     margin: 1rem;
   }
-  
+
   .modal-header {
     padding: 1.5rem 1.5rem 1rem;
   }
-  
+
   .modal-header h3 {
     font-size: 1.5rem;
   }
-  
+
   .modal-body {
     padding: 1.5rem;
   }
-  
+
   .auth-tabs {
     margin-bottom: 1.5rem;
   }
-  
+
   .tab-btn {
     padding: 0.75rem;
     font-size: 0.9rem;
   }
-  
+
   .form-group input {
     padding: 0.875rem;
   }
-  
+
   .auth-submit-btn {
     padding: 1rem;
     font-size: 1rem;
