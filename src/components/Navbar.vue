@@ -1,73 +1,85 @@
 <template>
-  <header class="navbar">
+  <header class="navbar-modern">
+    <!-- Top Bar con Marquesina -->
     <div class="top-bar">
-      <div class="top-bar-container">
-        <div class="top-bar-left">
-          <div class="marquee-container">
-            <div class="marquee-content">
-              <span class="marquee-text">Lunes a Viernes (Horario de atención 10:00-17:00)</span>
-            </div>
-          </div>
+      <div class="marquee-section">
+        <div class="marquee-content">
+          <span class="marquee-text">🕒 Lunes a Viernes (Horario de atención 10:00-17:00) 🕒</span>
         </div>
-        <div class="top-bar-right">
-          <a href="https://wa.me/56955555" class="top-bar-link">
-            <span class="whatsapp-icon">📱</span>
-            <span>Whatsapp +56 955555</span>
-          </a>
-          <a href="mailto:sos@dandolahora.cl" class="top-bar-link">
-            <span class="email-icon">✉️</span>
-            <span>soporte@gmail.com</span>
-          </a>
-        </div>
+      </div>
+      <div class="contact-info">
+        <a href="https://wa.me/56955555" class="contact-link whatsapp">
+          <span class="contact-icon">📱</span>
+          <span class="contact-text">WhatsApp +56 955555</span>
+        </a>
+        <a href="mailto:soporte@gmail.com" class="contact-link email">
+          <span class="contact-icon">✉️</span>
+          <span class="contact-text">soporte@gmail.com</span>
+        </a>
       </div>
     </div>
 
-    <div class="navbar-main">
-      <div class="navbar-container">
-        <div class="navbar-brand">
+    <!-- Main Navigation -->
+    <div class="main-nav">
+      <div class="nav-container">
+        <!-- Brand Section -->
+        <div class="brand-section">
           <RouterLink to="/" class="brand-link">
-            <div class="logo">
-              <span class="brand-name">Dando La Hora</span>
+            <div class="brand-logo">
+              <div class="brand-text">
+                <span class="brand-name">Dando La Hora</span>
+                <span class="brand-tagline">Relojes Vintage & Modernos</span>
+              </div>
             </div>
           </RouterLink>
         </div>
 
-        <div class="search-container">
-          <div class="search-box">
-            <input 
-              type="text" 
-              placeholder="Buscar relojes, marcas, accesorios..." 
-              class="search-input"
-              v-model="searchQuery"
-              @keyup.enter="handleSearch"
-            />
-            <button class="search-btn" @click="handleSearch">
-              <span class="search-icon">🔍</span>
-            </button>
+        <!-- Search Section -->
+        <div class="search-section">
+          <div class="search-wrapper">
+            <div class="search-input-group">
+              <input 
+                type="text" 
+                placeholder="Buscar relojes, marcas, accesorios..." 
+                class="search-input"
+                v-model="searchQuery"
+                @keyup.enter="handleSearch"
+              />
+              <button class="search-btn" @click="handleSearch">
+                <span class="search-icon">🔍</span>
+              </button>
+            </div>
           </div>
         </div>
 
-        <div class="navbar-actions">
-          <button class="cart-btn" @click="toggleCart">
-          <span class="cart-icon">🛒</span>
-          <span class="cart-text">Carrito</span>
-          <span class="cart-count" v-if="cartCount > 0">({{ cartCount }})</span>
+        <!-- Actions Section -->
+        <div class="actions-section">
+          <button class="action-btn cart-btn" @click="toggleCart">
+            <div class="btn-icon">🛒</div>
+            <div class="btn-content">
+              <span class="btn-text">Carrito</span>
+              <span class="btn-count" v-if="cartCount > 0">{{ cartCount }}</span>
+            </div>
           </button>
 
-          <div class="user-menu">
+          <div class="user-section">
             <template v-if="!userStore.isAuthenticated">
-              <RouterLink to="/login" class="auth-btn login-btn">
-                <span class="btn-icon">👤</span>
-                <span class="btn-text">Login</span>
+              <RouterLink to="/login" class="action-btn login-btn">
+                <div class="btn-icon">👤</div>
+                <div class="btn-content">
+                  <span class="btn-text">Login</span>
+                </div>
               </RouterLink>
             </template>
 
             <template v-else>
-              <div class="user-dropdown">
-                <button class="user-btn" @click="toggleUserMenu" :class="{ active: showUserMenu }">
-                  <span class="user-avatar">👤</span>
-                  <span class="user-name">{{ userStore.user?.name || 'Usuario' }}</span>
-                  <span class="dropdown-arrow">▼</span>
+              <div class="user-dropdown" @click="toggleUserMenu">
+                <button class="action-btn user-btn" :class="{ active: showUserMenu }">
+                  <div class="btn-icon">👤</div>
+                  <div class="btn-content">
+                    <span class="btn-text">{{ userStore.user?.name || 'Usuario' }}</span>
+                  </div>
+                  <div class="dropdown-arrow" :class="{ active: showUserMenu }">▼</div>
                 </button>
                 
                 <div class="dropdown-menu" v-show="showUserMenu">
@@ -95,7 +107,7 @@
             </template>
           </div>
 
-          <button class="mobile-menu-toggle" @click="toggleMobileMenu">
+          <button class="mobile-toggle" @click="toggleMobileMenu">
             <span class="hamburger" :class="{ active: showMobileMenu }">
               <span></span>
               <span></span>
@@ -106,131 +118,68 @@
       </div>
     </div>
 
-    <nav class="main-nav">
-      <div class="nav-container">
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+      <div class="nav-wrapper">
         <div class="nav-links">
-          <div class="nav-item dropdown-item">
-            <RouterLink to="/relojes" class="nav-link">
-              Relojes
-              <span class="dropdown-arrow">▼</span>
+          <div class="nav-item" v-for="(item, index) in navItems" :key="index">
+            <RouterLink :to="item.path" class="nav-link" @click="closeMobileMenu">
+              <span class="nav-text">{{ item.name }}</span>
+              <span class="nav-arrow" v-if="item.name === 'Relojes'">▼</span>
             </RouterLink>
-            <div class="dropdown-menu-large">
-              <div class="dropdown-content">
-                <div class="dropdown-section">
-                  <h4>Colecciones</h4>
-                  <RouterLink to="/relojes/nuevos" class="dropdown-link">Nuevos</RouterLink>
-                  <RouterLink to="/relojes/mas-vendidos" class="dropdown-link">Más vendidos</RouterLink>
-                  <RouterLink to="/relojes/colaboraciones" class="dropdown-link">Colaboraciones</RouterLink>
-                  <RouterLink to="/relojes/despertadores" class="dropdown-link">Despertadores</RouterLink>
-                  <RouterLink to="/relojes/ofertas" class="dropdown-link">Ofertas hasta 25% OFF</RouterLink>
-                  <RouterLink to="/relojes/segunda-mano" class="dropdown-link">Segunda Mano</RouterLink>
+            
+                <!-- Dropdown Menu para Relojes -->
+                <div class="dropdown-menu-relojes" v-if="item.name === 'Relojes'">
+                  <div class="dropdown-content">
+                    <div class="dropdown-section">
+                      <h4 class="section-title">⭐ Productos Destacados</h4>
+                      <button @click="viewFeaturedProduct('f-91w')" class="dropdown-link featured">
+                        <span class="product-image">🕒</span>
+                        <div class="product-info">
+                          <span class="link-text">Casio F-91W Clásico</span>
+                          <span class="product-price">$16.000</span>
+                        </div>
+                      </button>
+                      <button @click="viewFeaturedProduct('calculadora')" class="dropdown-link featured">
+                        <span class="product-image">🧮</span>
+                        <div class="product-info">
+                          <span class="link-text">Reloj Calculadora</span>
+                          <span class="product-price">$28.500</span>
+                        </div>
+                      </button>
+                      <button @click="viewFeaturedProduct('world time')" class="dropdown-link featured">
+                        <span class="product-image">🌍</span>
+                        <div class="product-info">
+                          <span class="link-text">World Time Royale</span>
+                          <span class="product-price">$39.500</span>
+                        </div>
+                      </button>
+                      <button @click="viewFeaturedProduct('transparente')" class="dropdown-link featured">
+                        <span class="product-image">🔍</span>
+                        <div class="product-info">
+                          <span class="link-text">Transparentes 2024</span>
+                          <span class="product-price">$32.000</span>
+                        </div>
+                      </button>
+                      <button @click="viewFeaturedProduct('pantalla negativa')" class="dropdown-link featured">
+                        <span class="product-image">📱</span>
+                        <div class="product-info">
+                          <span class="link-text">Pantalla Negativa</span>
+                          <span class="product-price">$42.000</span>
+                        </div>
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div class="dropdown-section">
-                  <h4>Estilo</h4>
-                  <RouterLink to="/relojes/digitales-vintage" class="dropdown-link">Digitales vintage</RouterLink>
-                  <RouterLink to="/relojes/analogos-formales" class="dropdown-link">Análogos formales</RouterLink>
-                  <RouterLink to="/relojes/minimalista" class="dropdown-link">Minimalista</RouterLink>
-                  <RouterLink to="/relojes/a-cuerda" class="dropdown-link">A cuerda</RouterLink>
-                  <RouterLink to="/relojes/fabricado-japon" class="dropdown-link">Fabricado en Japón</RouterLink>
-                  <RouterLink to="/relojes/automatico" class="dropdown-link">Automático</RouterLink>
-                </div>
-                <div class="dropdown-section">
-                  <h4>⭐ Recomendados</h4>
-                  <RouterLink to="/relojes/orient-bambino" class="dropdown-link featured">Orient Bambino</RouterLink>
-                </div>
-              </div>
-            </div>
           </div>
-
-          <div class="nav-item dropdown-item">
-            <RouterLink to="/marcas" class="nav-link">
-              Marcas
-              <span class="dropdown-arrow">▼</span>
-            </RouterLink>
-            <div class="dropdown-menu-large">
-              <div class="dropdown-content">
-                <div class="dropdown-section">
-                  <RouterLink to="/marcas/casio-vintage" class="dropdown-link">Relojes Casio Vintage</RouterLink>
-                  <RouterLink to="/marcas/casio-g-shock" class="dropdown-link">Relojes Casio G-Shock Vintage</RouterLink>
-                  <RouterLink to="/marcas/seiko" class="dropdown-link">Relojes Seiko</RouterLink>
-                  <RouterLink to="/marcas/citizen" class="dropdown-link">Relojes Citizen</RouterLink>
-                  <RouterLink to="/marcas/luch" class="dropdown-link">Relojes Luch Made in Belarus</RouterLink>
-                  <RouterLink to="/marcas/laco" class="dropdown-link">Relojes Laco</RouterLink>
-                  <RouterLink to="/marcas/frank-miura" class="dropdown-link">Frank Miura</RouterLink>
-                  <RouterLink to="/marcas/tissot" class="dropdown-link">Relojes Tissot - Swiss Made</RouterLink>
-                  <RouterLink to="/marcas/vostok" class="dropdown-link">Relojes Vostok Made in Russia</RouterLink>
-                  <RouterLink to="/marcas/hamilton" class="dropdown-link">Relojes Hamilton</RouterLink>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="nav-item dropdown-item">
-            <RouterLink to="/regalos" class="nav-link">
-              Regalos
-              <span class="dropdown-arrow">▼</span>
-            </RouterLink>
-            <div class="dropdown-menu-large">
-              <div class="dropdown-content">
-                <div class="dropdown-section">
-                  <h4>Colecciones</h4>
-                  <RouterLink to="/regalos/relojes" class="dropdown-link">Relojes</RouterLink>
-                  <RouterLink to="/regalos/accesorios" class="dropdown-link">Accesorios</RouterLink>
-                  <RouterLink to="/regalos/cuidado-reloj" class="dropdown-link">Cuidado del reloj</RouterLink>
-                  <RouterLink to="/regalos/ofertas" class="dropdown-link">Ofertas hasta 25% OFF</RouterLink>
-                  <RouterLink to="/regalos/gift-card" class="dropdown-link">Gift Card</RouterLink>
-                </div>
-                <div class="dropdown-section">
-                  <h4>Por Edad</h4>
-                  <RouterLink to="/regalos/ninos" class="dropdown-link">Niños</RouterLink>
-                  <RouterLink to="/regalos/mujeres" class="dropdown-link">Mujeres</RouterLink>
-                  <RouterLink to="/regalos/hombres" class="dropdown-link">Hombres</RouterLink>
-                  <RouterLink to="/regalos/adultos" class="dropdown-link">Adultos</RouterLink>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="nav-item dropdown-item">
-            <RouterLink to="/proyectos" class="nav-link">
-              Proyectos
-              <span class="dropdown-arrow">▼</span>
-            </RouterLink>
-            <div class="dropdown-menu-large">
-              <div class="dropdown-content">
-                <div class="dropdown-section">
-                  <RouterLink to="/proyectos/vostok-justicia-divina" class="dropdown-link">Reloj Vostok x Dando la Hora Justicia Divina</RouterLink>
-                  <RouterLink to="/proyectos/numero-uno" class="dropdown-link">El Número Uno, el primer reloj digital en la historia de Chile</RouterLink>
-                  <RouterLink to="/proyectos/elektronika" class="dropdown-link">P.R.P. 03 Elektronika x Dando La Hora</RouterLink>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="nav-item dropdown-item">
-            <RouterLink to="/accesorios" class="nav-link">
-              Accesorios
-              <span class="dropdown-arrow">▼</span>
-            </RouterLink>
-            <div class="dropdown-menu-large">
-              <div class="dropdown-content">
-                <div class="dropdown-section">
-                  <RouterLink to="/accesorios/correas" class="dropdown-link">Correas</RouterLink>
-                  <RouterLink to="/accesorios/herramientas" class="dropdown-link">Herramientas</RouterLink>
-                  <RouterLink to="/accesorios/merch-dlh" class="dropdown-link">Merch DLH</RouterLink>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          
         </div>
       </div>
     </nav>
 
+    <!-- Mobile Menu -->
     <div class="mobile-menu" :class="{ active: showMobileMenu }">
       <div class="mobile-search">
-        <div class="search-box">
+        <div class="search-wrapper">
           <input 
             type="text" 
             placeholder="Buscar relojes, marcas, accesorios..." 
@@ -244,17 +193,23 @@
         </div>
       </div>
       
-      <div class="mobile-nav-links">
-        <RouterLink to="/relojes" class="mobile-nav-link" @click="closeMobileMenu">Relojes</RouterLink>
-        <RouterLink to="/marcas" class="mobile-nav-link" @click="closeMobileMenu">Marcas</RouterLink>
-        <RouterLink to="/regalos" class="mobile-nav-link" @click="closeMobileMenu">Regalos</RouterLink>
-        <RouterLink to="/proyectos" class="mobile-nav-link" @click="closeMobileMenu">Proyectos</RouterLink>
-        <RouterLink to="/accesorios" class="mobile-nav-link" @click="closeMobileMenu">Accesorios</RouterLink>
+      <div class="mobile-nav">
+        <div class="mobile-nav-links">
+          <RouterLink 
+            v-for="(item, index) in navItems" 
+            :key="index"
+            :to="item.path" 
+            class="mobile-nav-link" 
+            @click="closeMobileMenu"
+          >
+            <span class="mobile-nav-text">{{ item.name }}</span>
+          </RouterLink>
+        </div>
       </div>
       
-      <div class="mobile-auth">
+      <div class="mobile-actions">
         <template v-if="!userStore.isAuthenticated">
-          <RouterLink to="/login" class="mobile-auth-btn" @click="closeMobileMenu">
+          <RouterLink to="/login" class="mobile-action-btn" @click="closeMobileMenu">
             <span class="btn-icon">👤</span>
             <span class="btn-text">Iniciar Sesión</span>
           </RouterLink>
@@ -286,14 +241,24 @@
         </template>
       </div>
     </div>
+
+    <!-- Product Detail Popup -->
+    <ProductDetailPopup
+      :isVisible="showProductPopup"
+      :product="selectedProduct"
+      @close="closeProductPopup"
+      @add-to-cart="addToCart"
+      @add-to-wishlist="addToWishlist"
+    />
   </header>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useUserStore } from '../store/user.js'
-import { openCart, getCart } from '../services/cart.js'
+import { fetchProducts } from '../services/api.js'
+import ProductDetailPopup from './ProductDetailPopup.vue'
 
 // Store
 const userStore = useUserStore()
@@ -303,14 +268,18 @@ const showUserMenu = ref(false)
 const showMobileMenu = ref(false)
 const cartCount = ref(0)
 const searchQuery = ref('')
+const showProductPopup = ref(false)
+const selectedProduct = ref(null)
 
-// Conectar carrito
-const cartItems = getCart()
-
-// Actualizar contador cada vez que cambia el carrito
-watch(cartItems, () => {
-  cartCount.value = cartItems.value.length
-}, { deep: true })
+// Navigation items
+const navItems = ref([
+  { name: 'Relojes', path: '/relojes' },
+  { name: 'Productos', path: '/productos' },
+  { name: 'Marcas', path: '/marcas' },
+  { name: 'Regalos', path: '/regalos' },
+  { name: 'Proyectos', path: '/proyectos' },
+  { name: 'Accesorios', path: '/accesorios' }
+])
 
 // Métodos
 const toggleUserMenu = () => {
@@ -327,13 +296,12 @@ const closeMobileMenu = () => {
 
 // Abrir carrito al hacer click en el botón
 const toggleCart = () => {
-  openCart()
+  console.log('Toggle cart')
 }
 
 const handleSearch = () => {
   if (searchQuery.value.trim()) {
     console.log('Buscando:', searchQuery.value)
-    // Implementar lógica de búsqueda
   }
 }
 
@@ -341,8 +309,117 @@ const handleLogout = () => {
   userStore.logout()
   showUserMenu.value = false
   closeMobileMenu()
-  // Redirigir al home después del logout
   window.location.href = '/'
+}
+
+// Función para buscar productos por término de búsqueda
+const searchProductByTerm = async (searchTerm) => {
+  try {
+    const products = await fetchProducts()
+    const foundProduct = products.find(product => 
+      product.titulo.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      product.descripcion.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    return foundProduct
+  } catch (error) {
+    console.error('Error al buscar producto:', error)
+    return null
+  }
+}
+
+// Función para mostrar producto destacado
+const viewFeaturedProduct = async (searchTerm) => {
+  const product = await searchProductByTerm(searchTerm)
+  if (product) {
+    selectedProduct.value = product
+    showProductPopup.value = true
+    closeMobileMenu() // Cerrar el menú móvil si está abierto
+  } else {
+    console.log('Producto no encontrado:', searchTerm)
+  }
+}
+
+// Función para cerrar el popup
+const closeProductPopup = () => {
+  showProductPopup.value = false
+  selectedProduct.value = null
+}
+
+// Función para añadir al carrito desde el popup
+const addToCart = (product) => {
+  if (product.stock > 0) {
+    // Mostrar notificación de éxito
+    const notification = document.createElement('div')
+    notification.className = 'cart-notification'
+    notification.innerHTML = `
+      <div class="notification-content">
+        <span class="notification-icon">✅</span>
+        <span class="notification-text">"${product.titulo}" añadido al carrito</span>
+      </div>
+    `
+    
+    notification.style.cssText = `
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #00f032, #02c02b);
+      color: white;
+      padding: 1rem 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 8px 25px rgba(0, 240, 50, 0.3);
+      z-index: 10001;
+      animation: slideInRight 0.3s ease-out;
+      font-weight: 600;
+    `
+    
+    document.body.appendChild(notification)
+    
+    setTimeout(() => {
+      notification.style.animation = 'slideOutRight 0.3s ease-out'
+      setTimeout(() => {
+        document.body.removeChild(notification)
+      }, 300)
+    }, 3000)
+    
+    console.log('Producto añadido al carrito:', product)
+  }
+}
+
+// Función para añadir a favoritos
+const addToWishlist = (product) => {
+  const notification = document.createElement('div')
+  notification.className = 'wishlist-notification'
+  notification.innerHTML = `
+    <div class="notification-content">
+      <span class="notification-icon">♡</span>
+      <span class="notification-text">"${product.titulo}" agregado a favoritos</span>
+    </div>
+  `
+  
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #8171f6, #6b5ce6);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 8px 25px rgba(129, 113, 246, 0.3);
+    z-index: 10001;
+    animation: slideInRight 0.3s ease-out;
+    font-weight: 600;
+  `
+  
+  document.body.appendChild(notification)
+  
+  setTimeout(() => {
+    notification.style.animation = 'slideOutRight 0.3s ease-out'
+    setTimeout(() => {
+      document.body.removeChild(notification)
+    }, 300)
+  }, 3000)
+  
+  console.log('Producto agregado a favoritos:', product)
 }
 
 // Cerrar menús al hacer click fuera
@@ -363,72 +440,82 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* Variables CSS */
+:root {
+  --primary-blue: #8171f6;
+  --primary-green: #00f032;
+  --primary-yellow: #d2fa03;
+  --primary-red: #fe3301;
+  --primary-black: #1f1f1f;
+  --primary-white: #ffffff;
+  
+  --gray-50: #f4f4f4;
+  --gray-100: #e5e5e5;
+  --gray-200: #d2d2d2;
+  --gray-300: #a5a5a5;
+  --gray-400: #797979;
+  --gray-500: #4c4c4c;
+  --gray-600: #353535;
+  
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+  
+  --border-radius: 12px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset y base */
+* {
+  box-sizing: border-box;
+}
+
+.navbar-modern {
+  width: 100%;
+  background: var(--primary-white);
+  box-shadow: var(--shadow-lg);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(20px);
+}
+
+/* Top Bar con Marquesina */
+.top-bar {
+  background: linear-gradient(135deg, var(--primary-blue), #6b5ce6);
+  color: var(--primary-white);
+  padding: 0.75rem 0;
+  overflow: hidden;
+  position: relative;
+}
 
 .top-bar {
-  background: var(--primary-blue);
-  color: white;
-  font-size: 0.875rem;
-  padding: 0.5rem 0;
-}
-
-.top-bar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-}
-
-.top-bar-left {
-  font-weight: 500;
-  overflow: hidden;
-  flex: 1;
-}
-
-.marquee-container {
-  overflow: hidden;
-  white-space: nowrap;
-  position: relative;
+  justify-content: space-between;
+  padding: 0.75rem 2rem;
   width: 100%;
 }
 
-.marquee-container::before,
-.marquee-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2rem;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.marquee-container::before {
-  left: 0;
-  background: linear-gradient(to right, var(--primary-blue), transparent);
-}
-
-.marquee-container::after {
-  right: 0;
-  background: linear-gradient(to left, var(--primary-blue), transparent);
+.marquee-section {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
 }
 
 .marquee-content {
-  display: inline-block;
-  animation: marquee 15s linear infinite;
+  display: flex;
+  animation: marquee 20s linear infinite;
   white-space: nowrap;
 }
 
-.marquee-container:hover .marquee-content {
-  animation-play-state: paused;
-}
-
 .marquee-text {
-  display: inline-block;
+  font-size: 0.875rem;
   font-weight: 500;
-  color: white;
+  color: var(--primary-white);
   opacity: 0.9;
+  padding-right: 3rem;
 }
 
 @keyframes marquee {
@@ -440,112 +527,108 @@ onUnmounted(() => {
   }
 }
 
-.top-bar-right {
+.contact-info {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
+  align-items: center;
 }
 
-.top-bar-link {
-  color: white;
-  text-decoration: none;
+.contact-link {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  transition: opacity 0.2s ease;
+  color: var(--primary-white);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
 }
 
-.top-bar-link:hover {
-  opacity: 0.8;
+.contact-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
-.whatsapp-icon,
-.email-icon {
+.contact-icon {
   font-size: 1rem;
 }
 
-.navbar {
+/* Main Navigation */
+.main-nav {
   background: var(--primary-white);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--gray-100);
+  padding: 1rem 0;
 }
 
-.navbar-main {
-  border-bottom: none;
-}
-
-.navbar-container {
-  width: 100%;
-  padding: 0 2rem;
+.nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  width: 100%;
+  padding: 0 2rem;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.navbar-brand {
+/* Brand Section */
+.brand-section {
   flex-shrink: 0;
 }
 
 .brand-link {
   text-decoration: none;
-  color: var(--primary-black);
+  display: block;
+}
+
+.brand-logo {
   display: flex;
   align-items: center;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0.5rem 1rem;
-  border-radius: 1rem;
-  position: relative;
-  overflow: hidden;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
 }
 
-.brand-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 1rem;
-}
-
-.brand-link:hover::before {
-  opacity: 0.1;
-}
-
-.brand-link:hover {
+.brand-logo:hover {
+  background: var(--gray-50);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 240, 50, 0.2);
 }
 
-.logo {
+.brand-text {
   display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 1;
+  flex-direction: column;
 }
 
 .brand-name {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--primary-green);
-  letter-spacing: -0.025em;
-  text-shadow: 0 2px 4px rgba(0, 240, 50, 0.1);
+  line-height: 1.2;
 }
 
-.search-container {
+.brand-tagline {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Search Section */
+.search-section {
   flex: 1;
   max-width: 500px;
-  margin: 0 2rem;
+  margin: 0 auto;
 }
 
-.search-box {
+.search-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.search-input-group {
   position: relative;
   display: flex;
   align-items: center;
@@ -555,72 +638,67 @@ onUnmounted(() => {
   width: 100%;
   padding: 0.875rem 1.25rem;
   padding-right: 3.5rem;
-  border: 2px solid transparent;
-  border-radius: 1.5rem;
+  border: 2px solid var(--gray-100);
+  border-radius: 2rem;
   font-size: 0.875rem;
-  background: linear-gradient(135deg, var(--gray-50), white);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  background: var(--gray-50);
+  transition: var(--transition);
+  outline: none;
 }
 
 .search-input:focus {
-  outline: none;
   border-color: var(--primary-green);
-  background: white;
-  box-shadow: 
-    0 0 0 4px rgba(0, 240, 50, 0.1),
-    0 4px 12px rgba(0, 0, 0, 0.1),
-    inset 0 2px 4px rgba(0, 0, 0, 0.05);
+  background: var(--primary-white);
+  box-shadow: 0 0 0 4px rgba(0, 240, 50, 0.1);
   transform: translateY(-1px);
 }
 
 .search-btn {
   position: absolute;
-  right: 0.5rem;
+  right: 0.375rem;
   background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
   border: none;
   padding: 0.625rem;
   cursor: pointer;
-  border-radius: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(0, 240, 50, 0.2);
+  border-radius: 50%;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
 }
 
 .search-btn:hover {
   transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 240, 50, 0.3);
+  box-shadow: var(--shadow-lg);
 }
 
 .search-icon {
   font-size: 1rem;
-  color: var(--gray-500);
+  color: var(--primary-white);
 }
 
-.navbar-actions {
+/* Actions Section */
+.actions-section {
   display: flex;
   align-items: center;
   gap: 1rem;
   flex-shrink: 0;
 }
 
-.cart-btn {
+.action-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, var(--gray-50), white);
-  border: 2px solid transparent;
   padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  border-radius: 1.5rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  color: var(--gray-700);
+  transition: var(--transition);
+  text-decoration: none;
   font-weight: 500;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.cart-btn::before {
+.action-btn::before {
   content: '';
   position: absolute;
   top: 0;
@@ -630,53 +708,246 @@ onUnmounted(() => {
   background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
   opacity: 0;
   transition: opacity 0.3s ease;
-  border-radius: 1.5rem;
+  border-radius: var(--border-radius);
 }
 
-.cart-btn:hover::before {
+.action-btn:hover::before {
   opacity: 0.1;
 }
 
-.cart-btn:hover {
+.action-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 240, 50, 0.2);
-  border-color: var(--primary-green);
+  box-shadow: var(--shadow-lg);
 }
 
-.cart-icon {
+.btn-icon {
   font-size: 1.25rem;
+  position: relative;
+  z-index: 1;
 }
 
-.cart-text {
+.btn-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-text {
   font-size: 0.875rem;
+  font-weight: 600;
 }
 
-.cart-count {
-  background: var(--red);
-  color: white;
+.btn-count {
+  background: var(--primary-red);
+  color: var(--primary-white);
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.125rem 0.375rem;
   border-radius: 9999px;
   min-width: 1.25rem;
   text-align: center;
+  margin-top: 0.125rem;
 }
 
-.main-nav {
-  background: linear-gradient(135deg, var(--gray-50), white);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(10px);
+.cart-btn {
+  background: linear-gradient(135deg, var(--gray-50), var(--primary-white));
+  color: var(--gray-700);
+  border: 2px solid var(--gray-200);
+  border-radius: 2rem;
+  box-shadow: var(--shadow-sm);
 }
 
-.nav-container {
+.cart-btn:hover {
+  border-color: var(--primary-green);
+  box-shadow: 0 8px 25px rgba(0, 240, 50, 0.15);
+}
+
+.login-btn {
+  background: linear-gradient(135deg, var(--primary-yellow), #b8e002);
+  color: var(--primary-black);
+  border: 2px solid var(--primary-yellow);
+  border-radius: 2rem;
+  box-shadow: var(--shadow-md);
+}
+
+.login-btn:hover {
+  background: linear-gradient(135deg, #b8e002, var(--primary-yellow));
+  border-color: #b8e002;
+  box-shadow: 0 8px 25px rgba(210, 250, 3, 0.3);
+}
+
+/* User Dropdown */
+.user-dropdown {
+  position: relative;
+}
+
+.user-btn {
+  background: linear-gradient(135deg, var(--gray-50), var(--primary-white));
+  color: var(--gray-700);
+  border: 2px solid var(--gray-200);
+  border-radius: 2rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.user-btn:hover {
+  border-color: var(--primary-blue);
+  box-shadow: 0 8px 25px rgba(129, 113, 246, 0.15);
+}
+
+.dropdown-arrow {
+  font-size: 0.75rem;
+  transition: var(--transition);
+  position: relative;
+  z-index: 1;
+}
+
+.dropdown-arrow.active {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: var(--primary-white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-xl);
+  min-width: 220px;
+  overflow: hidden;
+  z-index: 1001;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-header {
+  padding: 1rem;
+  background: var(--gray-50);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-email {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: var(--gray-200);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  text-decoration: none;
+  color: var(--gray-700);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: var(--transition);
+  border: none;
+  background: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: var(--gray-50);
+  color: var(--primary-green);
+}
+
+.logout-item {
+  color: var(--primary-red);
+}
+
+.logout-item:hover {
+  background: #fef2f2;
+  color: var(--primary-red);
+}
+
+.item-icon {
+  font-size: 1rem;
+}
+
+/* Mobile Toggle */
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.mobile-toggle:hover {
+  background: var(--gray-100);
+}
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 20px;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 2px;
+  background: var(--gray-700);
+  transition: var(--transition);
+  border-radius: 1px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Navigation Menu */
+.nav-menu {
+  background: linear-gradient(135deg, var(--gray-50), var(--primary-white));
+  border-bottom: 1px solid var(--gray-100);
+  padding: 0;
+}
+
+.nav-wrapper {
   width: 100%;
   padding: 0 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 0;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 0 1rem;
 }
 
 .nav-item {
@@ -686,17 +957,19 @@ onUnmounted(() => {
 .nav-link {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
-  padding: 1.25rem 1.75rem;
+  gap: 0.5rem;
+  padding: 1.25rem 2rem;
   text-decoration: none;
   color: var(--gray-700);
-  font-weight: 500;
-  font-size: 0.875rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-radius: 1rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  border-radius: var(--border-radius);
   margin: 0.5rem 0.25rem;
   position: relative;
   overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .nav-link::before {
@@ -709,7 +982,7 @@ onUnmounted(() => {
   background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
   opacity: 0;
   transition: opacity 0.3s ease;
-  border-radius: 1rem;
+  border-radius: var(--border-radius);
 }
 
 .nav-link:hover::before {
@@ -718,82 +991,104 @@ onUnmounted(() => {
 
 .nav-link:hover {
   color: var(--primary-green);
-  background: white;
+  background: var(--primary-white);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 240, 50, 0.15);
+  box-shadow: var(--shadow-lg);
 }
 
 .nav-link.router-link-active {
   color: var(--primary-green);
-  background: white;
+  background: var(--primary-white);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 240, 50, 0.2);
+  box-shadow: var(--shadow-md);
 }
 
 .nav-link.router-link-active::before {
   opacity: 0.15;
 }
 
-.dropdown-arrow {
-  font-size: 0.75rem;
-  transition: transform 0.2s ease;
+.nav-text {
+  position: relative;
+  z-index: 1;
 }
 
-.dropdown-item:hover .dropdown-arrow {
+.nav-arrow {
+  font-size: 0.75rem;
+  transition: var(--transition);
+  position: relative;
+  z-index: 1;
+}
+
+.nav-item:hover .nav-arrow {
   transform: rotate(180deg);
 }
 
-.dropdown-menu-large {
+/* Dropdown Menu para Relojes */
+.dropdown-menu-relojes {
   position: absolute;
   top: 100%;
   left: 0;
-  background: white;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 1.5rem;
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.5);
-  min-width: 600px;
+  background: var(--primary-white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-xl);
+  min-width: 400px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-20px) scale(0.95);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1001;
   backdrop-filter: blur(20px);
+  overflow: hidden;
 }
 
-.dropdown-item:hover .dropdown-menu-large {
+.nav-item:hover .dropdown-menu-relojes {
   opacity: 1;
   visibility: visible;
   transform: translateY(0) scale(1);
 }
 
 .dropdown-content {
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.dropdown-section h4 {
+.dropdown-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.section-title {
   font-size: 0.875rem;
-  font-weight: 600;
-  color: var(--gray-900);
+  font-weight: 700;
+  color: var(--primary-green);
   margin: 0 0 1rem 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  border-bottom: 2px solid var(--primary-green);
+  padding-bottom: 0.5rem;
 }
 
 .dropdown-link {
-  display: block;
-  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
   text-decoration: none;
-  color: var(--gray-600);
+  color: var(--gray-700);
   font-size: 0.875rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  transition: var(--transition);
   border-radius: 0.75rem;
   position: relative;
   overflow: hidden;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  cursor: pointer;
+  width: 100%;
 }
 
 .dropdown-link::before {
@@ -815,270 +1110,172 @@ onUnmounted(() => {
 
 .dropdown-link:hover {
   color: var(--primary-green);
-  transform: translateX(4px);
-  background: rgba(0, 240, 50, 0.05);
+  transform: translateY(-2px);
+  background: var(--primary-white);
+  box-shadow: 0 8px 25px rgba(0, 240, 50, 0.15);
+  border-color: var(--primary-green);
 }
 
 .dropdown-link.featured {
-  color: var(--primary-green);
+  color: var(--gray-700);
   font-weight: 600;
-  background: rgba(0, 240, 50, 0.1);
+  background: var(--primary-white);
+  border: 1px solid var(--gray-200);
 }
 
-.auth-btn {
+.dropdown-link.featured:hover {
+  background: var(--primary-white);
+  border-color: var(--primary-green);
+  box-shadow: 0 8px 25px rgba(0, 240, 50, 0.15);
+}
+
+.product-image {
+  font-size: 2rem;
+  width: 3rem;
+  height: 3rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-green), var(--primary-blue));
   border-radius: 0.5rem;
-  text-decoration: none;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  flex-shrink: 0;
 }
 
-.login-btn {
-  background: linear-gradient(135deg, var(--primary-yellow), #b8e002);
-  color: var(--black);
-  border-radius: 1.5rem;
-  padding: 0.75rem 1.5rem;
-  box-shadow: 0 4px 15px rgba(210, 250, 3, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.login-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, #b8e002, var(--primary-yellow));
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 1.5rem;
-}
-
-.login-btn:hover::before {
-  opacity: 1;
-}
-
-.login-btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(210, 250, 3, 0.4);
-}
-
-.btn-icon {
-  font-size: 1rem;
-}
-
-.btn-text {
-  font-size: 0.875rem;
-}
-
-.user-dropdown {
-  position: relative;
-}
-
-.user-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: var(--gray-50);
-  border: 1px solid var(--gray-200);
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.user-btn:hover {
-  background: var(--gray-100);
-  border-color: var(--gray-300);
-}
-
-.user-btn.active {
-  background: var(--gray-100);
-  border-color: var(--primary-red);
-}
-
-.user-avatar {
-  font-size: 1rem;
-}
-
-.user-name {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--gray-700);
-}
-
-.dropdown-arrow {
-  font-size: 0.75rem;
-  color: var(--gray-500);
-  transition: transform 0.2s ease;
-}
-
-.user-btn.active .dropdown-arrow {
-  transform: rotate(180deg);
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  right: 0;
-  background: white;
-  border: 1px solid var(--gray-200);
-  border-radius: 0.75rem;
-  box-shadow: var(--shadow-lg);
-  min-width: 200px;
-  overflow: hidden;
-  z-index: 1001;
-}
-
-.dropdown-header {
-  padding: 1rem;
-  background: var(--gray-50);
-}
-
-.user-info {
+.product-info {
   display: flex;
   flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
 }
 
-.user-email {
-  font-size: 0.75rem;
-  color: var(--gray-500);
-}
-
-.dropdown-divider {
-  height: 1px;
-  background: var(--gray-200);
-}
-
-.dropdown-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1rem;
-  text-decoration: none;
-  color: var(--gray-700);
+.link-text {
+  font-weight: 600;
   font-size: 0.875rem;
-  transition: background-color 0.2s ease;
-  border: none;
-  background: none;
-  width: 100%;
-  cursor: pointer;
+  position: relative;
+  z-index: 1;
 }
 
-.dropdown-item:hover {
-  background: var(--gray-50);
+.product-price {
+  font-weight: 700;
+  color: var(--primary-blue, #8171f6);
+  font-size: 0.75rem;
+  position: relative;
+  z-index: 1;
 }
 
-.logout-item {
-  color: var(--red);
-}
 
-.logout-item:hover {
-  background: #fef2f2;
-}
-
-.item-icon {
-  font-size: 1rem;
-}
-
-.item-text {
-  font-weight: 500;
-}
-
-.mobile-menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  padding: 0.5rem;
-  cursor: pointer;
-}
-
-.hamburger {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  width: 20px;
-}
-
-.hamburger span {
-  width: 100%;
-  height: 2px;
-  background: var(--gray-700);
-  transition: all 0.3s ease;
-}
-
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(7px, -6px);
-}
-
+/* Mobile Menu */
 .mobile-menu {
   display: none;
-  background: white;
+  background: var(--primary-white);
   border-top: 1px solid var(--gray-200);
   padding: 1rem;
+  animation: slideDown 0.3s ease;
+}
+
+.mobile-menu.active {
+  display: block;
+}
+
+.mobile-search {
+  padding: 1rem;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.mobile-search .search-wrapper {
+  width: 100%;
+}
+
+.mobile-search .search-input {
+  background: var(--primary-white);
+}
+
+.mobile-nav {
+  padding: 1rem 0;
 }
 
 .mobile-nav-links {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  margin-bottom: 1rem;
 }
 
 .mobile-nav-link {
-  padding: 0.75rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
   text-decoration: none;
   color: var(--gray-700);
   font-weight: 500;
-  border-bottom: 1px solid var(--gray-200);
+  border-radius: var(--border-radius);
+  transition: var(--transition);
 }
 
 .mobile-nav-link:hover {
+  background: var(--gray-50);
   color: var(--primary-green);
+  transform: translateX(4px);
 }
 
-.mobile-auth-btn {
+.mobile-actions {
+  padding: 1rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+.mobile-action-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  background: var(--primary-yellow);
-  color: var(--black);
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--border-radius);
   text-decoration: none;
-  border-radius: 0.5rem;
+  color: var(--gray-700);
+  font-size: 0.875rem;
   font-weight: 500;
-  justify-content: center;
+  transition: var(--transition);
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-action-btn:hover {
+  background: var(--gray-100);
+  border-color: var(--gray-300);
+  color: var(--primary-green);
 }
 
 .mobile-user-info {
   background: var(--gray-50);
-  border-radius: 0.75rem;
+  border-radius: var(--border-radius);
   padding: 1rem;
 }
 
 .mobile-user-header {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 1rem;
   margin-bottom: 1rem;
+}
+
+.user-avatar {
+  font-size: 2rem;
 }
 
 .user-details {
   display: flex;
   flex-direction: column;
+}
+
+.user-name {
+  font-weight: 600;
+  color: var(--gray-700);
+}
+
+.user-email {
+  font-size: 0.875rem;
+  color: var(--gray-400);
 }
 
 .mobile-user-actions {
@@ -1087,75 +1284,78 @@ onUnmounted(() => {
   gap: 0.5rem;
 }
 
-.mobile-action-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  background: white;
-  border: 1px solid var(--gray-200);
-  border-radius: 0.5rem;
-  text-decoration: none;
-  color: var(--gray-700);
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.2s ease;
-}
-
-.mobile-action-btn:hover {
-  background: var(--gray-50);
-  border-color: var(--gray-300);
-}
-
 .logout-btn {
-  color: var(--red);
+  color: var(--primary-red);
 }
 
 .logout-btn:hover {
   background: #fef2f2;
   border-color: #fecaca;
+  color: var(--primary-red);
 }
 
-.mobile-search {
-  padding: 1rem;
-  border-bottom: 1px solid var(--gray-200);
-}
-
-.mobile-search .search-box {
-  width: 100%;
-}
-
-.mobile-search .search-input {
-  background: white;
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .nav-container {
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+  }
+  
+  .search-section {
+    max-width: 400px;
+  }
+  
+  .nav-wrapper {
+    padding: 0 1.5rem;
+  }
+  
+  .dropdown-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+  
+  .dropdown-menu-relojes {
+    min-width: 500px;
+  }
 }
 
 @media (max-width: 768px) {
   .top-bar {
-    display: none;
+    padding: 0.75rem 1rem;
   }
   
-  .marquee-container::before,
-  .marquee-container::after {
-    width: 1rem;
+  .contact-info {
+    gap: 1rem;
   }
   
-  .marquee-text {
-    font-size: 0.8rem;
-  }
-  
-  .marquee-content {
-    animation: marquee 12s linear infinite;
+  .contact-link {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.75rem;
   }
   
   .main-nav {
+    padding: 0.75rem 0;
+  }
+  
+  .nav-container {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  
+  .brand-name {
+    font-size: 1.25rem;
+  }
+  
+  .brand-tagline {
+    font-size: 0.7rem;
+  }
+  
+  .search-section {
     display: none;
   }
   
-  .search-container {
-    display: none;
-  }
-  
-  .mobile-menu-toggle {
+  .mobile-toggle {
     display: block;
   }
   
@@ -1163,35 +1363,30 @@ onUnmounted(() => {
     display: block;
   }
   
-  .mobile-menu.active {
-    display: block;
-  }
-  
-  .navbar-container {
-    padding: 0 1rem;
-    height: 70px;
-  }
-  
-  .navbar-actions {
-    gap: 0.5rem;
-  }
-  
-  .cart-text {
+  .nav-menu {
     display: none;
   }
   
-  .user-name {
+  .dropdown-menu-relojes {
+    display: none;
+  }
+  
+  .actions-section {
+    gap: 0.5rem;
+  }
+  
+  .btn-text {
     display: none;
   }
   
   .dropdown-menu {
     right: -1rem;
-    min-width: 180px;
+    min-width: 200px;
   }
 }
 
 @media (max-width: 480px) {
-  .navbar-container {
+  .nav-container {
     padding: 0 0.75rem;
   }
   
@@ -1199,16 +1394,35 @@ onUnmounted(() => {
     font-size: 1.125rem;
   }
   
-  .logo-text {
-    font-size: 1.25rem;
+  .action-btn {
+    padding: 0.5rem;
   }
   
-  .cart-btn {
-    padding: 0.375rem;
-  }
-  
-  .cart-icon {
+  .btn-icon {
     font-size: 1.125rem;
+  }
+}
+
+/* Notification Animations */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(100%);
   }
 }
 </style>

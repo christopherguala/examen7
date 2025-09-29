@@ -10,11 +10,4 @@ const app = createApp(App)
 
 app.use(router)
 
-// Inicializar el store de usuario
-const userStore = useUserStore()
-app.config.globalProperties.$userStore = userStore
-
-// Verificar autenticación al cargar la app
-userStore.checkAuth()
-
 app.mount('#app')

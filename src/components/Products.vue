@@ -20,7 +20,6 @@ const filteredProducts = computed(() =>
 function addToCart(product) {
   alert(`"${product.titulo}" añadido al carrito`);
 }
-
 </script>
 
 <template>
@@ -34,7 +33,7 @@ function addToCart(product) {
         <img :src="product.imagen" class="product-card__image" :alt="product.titulo"/>
 
         <div class="product-card__body">
-          <p class="product-card__brand">Casio</p>
+          <p class="product-card__brand">{{ product.marca }}</p>
           <h3 class="product-card__title">{{ product.titulo }}</h3>
           <p class="product-card__description">{{ product.descripcion }}</p>
 
@@ -54,8 +53,10 @@ function addToCart(product) {
             ${{ product.precio.toLocaleString() }}
           </p>
 
-          <button v-if="product.stock > 0" class="product-card__button" @click="addToCart(product)">Añadir al carrito</button>
-          <p v-else class="product-card__soldout">Agotado</p>
+          <button class="product-card__button" :disabled="product.stock === 0" @click="product.stock > 0 && addToCart(product)">
+            {{ product.stock > 0 ? 'Añadir al carrito' : 'Agotado' }}
+          </button>
+
         </div>
       </article>
     </div>
@@ -136,7 +137,7 @@ function addToCart(product) {
 }
 
 .product-card__brand {
-  color: #4caf50;
+  color: #00f032;
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
@@ -181,16 +182,24 @@ function addToCart(product) {
 .product-card__button {
   margin-top: auto;
   padding: 0.75rem;
-  background-color: #007bff;
+  background-color: #00f032;
   border: none;
   border-radius: 6px;
-  color: #fff;
+  color: #000000;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
 .product-card__button:hover {
-  background-color: #0056b3;
+  background-color: #02c02b;
+}
+
+.product-card__button:disabled {
+  background-color: #fe3301;
+  color: #fff;
+  font-weight: bold;
+  cursor: not-allowed;
 }
 
 .product-card__soldout {
