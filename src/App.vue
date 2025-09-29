@@ -3,6 +3,7 @@ import { RouterView } from 'vue-router'
 import CyberNavbar from './components/CyberNavbar.vue'
 import NavbarSimple from './components/NavbarSimple.vue'
 import Footer from './components/Footer.vue'
+import CartDetail from './components/CartDetail.vue'
 </script>
 
 <template>
@@ -11,6 +12,7 @@ import Footer from './components/Footer.vue'
     <main class="main-content">
       <RouterView />
     </main>
+    <CartDetail />
     <Footer />
   </div>
 </template>

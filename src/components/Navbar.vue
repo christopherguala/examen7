@@ -192,10 +192,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import { fetchProducts } from '../services/api.js'
 import ProductDetailPopup from './ProductDetailPopup.vue'
+import { openCart, getCart } from '../services/cart.js'
 
 // Estado local
 const showMobileMenu = ref(false)
@@ -214,6 +215,7 @@ const navItems = ref([
   { name: 'Accesorios', path: '/accesorios' }
 ])
 
+
 // Métodos
 const toggleMobileMenu = () => {
   showMobileMenu.value = !showMobileMenu.value
@@ -223,9 +225,12 @@ const closeMobileMenu = () => {
   showMobileMenu.value = false
 }
 
+// Abrir carrito al hacer click en el botón
 const toggleCart = () => {
-  console.log('Toggle cart')
+  openCart()
 }
+
+
 
 const handleSearch = () => {
   if (searchQuery.value.trim()) {
@@ -305,6 +310,8 @@ const addToCart = (product) => {
     
     console.log('Producto añadido al carrito:', product)
   }
+  const items = getCart()
+    cartCount.value = items.length
 }
 
 // Función para añadir a favoritos
@@ -353,6 +360,8 @@ const handleClickOutside = (event) => {
 
 // Lifecycle
 onMounted(() => {
+   const items = getCart()
+  cartCount.value = items.length
   document.addEventListener('click', handleClickOutside)
 })
 
