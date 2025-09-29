@@ -11,18 +11,22 @@
           <img :src="item.imagen" class="cart-item-image" :alt="item.titulo"/>
           <div class="cart-item-info">
             <h3>{{ item.titulo }}</h3>
-            <p>Cantidad: {{ item.cantidad }}</p>
+            <div class="quantity-control">
+              <button @click="decreaseQuantity(item)">−</button>
+              <span>{{ item.cantidad }}</span>
+              <button @click="increaseQuantity(item)">+</button>
+            </div>
             <p>Precio: ${{ (item.precio * item.cantidad).toLocaleString() }}</p>
             <button class="remove-btn" @click="removeItem(item.id)">Eliminar</button>
           </div>
         </div>
-s
+
         <div class="cart-total">
           <p>Total: ${{ totalPrice.toLocaleString() }}</p>
         </div>
 
         <div class="cart-actions">
-          <button class="clear-btn" @click="clearCart">Vaciar Carrito</button>
+          <button class="clear-btn" @click="clearCartHandler">Vaciar Carrito</button>
           <button class="checkout-btn" @click="checkout">Pagar</button>
         </div>
       </div>
@@ -36,7 +40,7 @@ s
 
 <script setup>
 import { computed } from 'vue'
-import { getCart, removeFromCart, clearCart, useCartOpen, closeCart } from '../services/cart.js'
+import { getCart, removeFromCart, clearCart, useCartOpen, closeCart, addToCart } from '../services/cart.js'
 
 const cartItems = getCart()
 const isOpen = useCartOpen()
@@ -47,6 +51,16 @@ const totalPrice = computed(() =>
 
 const removeItem = (id) => removeFromCart(id)
 const clearCartHandler = () => clearCart()
+
+const increaseQuantity = (item) => addToCart(item, 1)
+const decreaseQuantity = (item) => {
+  if (item.cantidad > 1) {
+    item.cantidad -= 1
+  } else {
+    removeFromCart(item.id)
+  }
+}
+
 const checkout = () => {
   alert('Gracias por tu compra!')
   clearCart()
@@ -69,7 +83,7 @@ const checkout = () => {
 }
 
 .cart-modal {
-  background: var(--dark-80);
+  background: #2d2d2d; /* un poco más suave que el anterior */
   padding: 1rem;
   max-width: 500px;
   width: 90%;
@@ -108,6 +122,23 @@ const checkout = () => {
 
 .cart-item-info {
   flex: 1;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+}
+
+.quantity-control button {
+  background: #444;
+  color: var(--white);
+  border: none;
+  padding: 0.2rem 0.6rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
 .remove-btn {
@@ -151,6 +182,3 @@ const checkout = () => {
   color: var(--black);
 }
 </style>
-
-
-
