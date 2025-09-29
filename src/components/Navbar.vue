@@ -49,9 +49,9 @@
 
         <div class="navbar-actions">
           <button class="cart-btn" @click="toggleCart">
-            <span class="cart-icon">🛒</span>
-            <span class="cart-text">Carrito</span>
-            <span class="cart-count" v-if="cartCount > 0">({{ cartCount }})</span>
+          <span class="cart-icon">🛒</span>
+          <span class="cart-text">Carrito</span>
+          <span class="cart-count" v-if="cartCount > 0">({{ cartCount }})</span>
           </button>
 
           <div class="user-menu">
@@ -290,9 +290,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, watch } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useUserStore } from '../store/user.js'
+import { openCart, getCart } from '../services/cart.js'
 
 // Store
 const userStore = useUserStore()
@@ -302,6 +303,14 @@ const showUserMenu = ref(false)
 const showMobileMenu = ref(false)
 const cartCount = ref(0)
 const searchQuery = ref('')
+
+// Conectar carrito
+const cartItems = getCart()
+
+// Actualizar contador cada vez que cambia el carrito
+watch(cartItems, () => {
+  cartCount.value = cartItems.value.length
+}, { deep: true })
 
 // Métodos
 const toggleUserMenu = () => {
@@ -316,9 +325,9 @@ const closeMobileMenu = () => {
   showMobileMenu.value = false
 }
 
+// Abrir carrito al hacer click en el botón
 const toggleCart = () => {
-  // Implementar lógica del carrito
-  console.log('Toggle cart')
+  openCart()
 }
 
 const handleSearch = () => {

@@ -1,13 +1,16 @@
 
 
 <script setup>
+import { addToCart } from '../services/cart.js' 
 defineProps({
   product: Object
 })
-
-function addToCart(product) {
-  alert(`"${product.titulo}" añadido al carrito`)
+const handleAddToCart = (product) => {
+  addToCart(product, 1)
+  alert(`${product.titulo} agregado al carrito`) 
 }
+
+
 </script>
 
 <template>
@@ -33,14 +36,12 @@ function addToCart(product) {
 
       <p class="product-card__price">${{ product.precio.toLocaleString() }}</p>
 
-      <button
-        v-if="product.stock > 0"
-        class="product-card__button"
-        @click="addToCart(product)"
-      >
-        Añadir al carrito
-      </button>
-      <p v-else class="product-card__soldout">Agotado</p>
+      <button 
+            class="product-card__button" 
+            :disabled="product.stock === 0" 
+            @click="product.stock > 0 && handleAddToCart(product)">
+            {{ product.stock > 0 ? 'Añadir al carrito' : 'Agotado' }}
+          </button>
     </div>
   </article>
 </template>
