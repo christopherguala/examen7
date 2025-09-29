@@ -12,7 +12,27 @@ const router = createRouter({
     {
       path: "/login",
       name: "Login",
-      component: () => import("../views/LoginView.vue"),
+      component: () => import("../views/LoginViewSimple.vue"),
+    },
+    {
+      path: "/productos",
+      name: "Productos",
+      component: () => import("../views/ProductsView.vue"),
+    },
+    {
+      path: "/relojes",
+      name: "Relojes",
+      component: () => import("../views/ProductsView.vue"),
+    },
+    {
+      path: "/relojes/:category",
+      name: "RelojesCategoria",
+      component: () => import("../views/ProductsView.vue"),
+    },
+    {
+      path: "/test-productos",
+      name: "TestProductos",
+      component: () => import("../views/TestProductsView.vue"),
     },
   ],
 });
